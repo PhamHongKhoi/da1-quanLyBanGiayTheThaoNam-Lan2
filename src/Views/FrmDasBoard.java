@@ -32,6 +32,7 @@ import Services.Iplm.MauSacServiceIplm;
 import Services.Iplm.NhaSanXuatImpl;
 import Services.Iplm.NhanVienService;
 import Services.Iplm.SanPhamServiceIplm;
+import Services.Iplm.ThongKeService;
 import Services.Iplm.ThuongHieuRService;
 import Services.Iplm.ThuongHieuServiceImpl;
 import ViewModels.DanhSachSanPhamResponse;
@@ -49,6 +50,7 @@ import ViewModels.QuanLyMauSac;
 import ViewModels.QuanLyNhaSanXuat;
 import ViewModels.QuanLyNhanVien;
 import ViewModels.QuanLySanPham;
+import ViewModels.QuanLyThongKe;
 import ViewModels.QuanLyThuongHieu;
 import ViewModels.ThuongHieuRResponse;
 import java.awt.CardLayout;
@@ -174,6 +176,13 @@ public class FrmDasBoard extends javax.swing.JFrame {
     private KhachHangService khs = new KhachHangService();
     private DefaultComboBoxModel dcbbTrangThaiKhachHang = new DefaultComboBoxModel();
     private List<String> lstTrangThaiKhachHang = new ArrayList<>();
+
+    private DefaultTableModel dtmThongKeDoanhThu = new DefaultTableModel();
+    List<QuanLyThongKe> lstThongKe = new ArrayList<>();
+    ThongKeService tks = new ThongKeService();
+
+    private DefaultTableModel dtmHangHuy = new DefaultTableModel();
+    List<QuanLyThongKe> lstHangHuy = new ArrayList<>();
 
     public FrmDasBoard() {
         initComponents();
@@ -314,6 +323,45 @@ public class FrmDasBoard extends javax.swing.JFrame {
         lstKh = khs.getAll();
         showTableKhachHang(lstKh);
         showComBoxKH();
+
+        tbDoanhThuThongKe.setModel(dtmThongKeDoanhThu);
+        String[] thongKe = {"Tên Sản Phẩm", "Số lượng", "Đơn giá", "Ngày tạo", "Tổng tiền"};
+        dtmThongKeDoanhThu.setColumnIdentifiers(thongKe);
+        lstThongKe = tks.getAll();
+        showTableThongKe(lstThongKe);
+
+        tbHangHoaHuy.setModel(dtmHangHuy);
+        String[] hangHuy = {"Tên Sản Phẩm", "Số lượng", "Đơn giá", "Ngày tạo", "Trạng thái", "Tổng tiền"};
+        dtmHangHuy.setColumnIdentifiers(hangHuy);
+
+        lstHangHuy = tks.getHangHuy();
+        showTableHangHuy(lstHangHuy);
+
+        int soHoaDon = 0;
+        for (int i = 0; i < tbDoanhThuThongKe.getRowCount(); i++) {
+            soHoaDon = ++i;
+        }
+        jlbSoHoaDon.setText(String.valueOf(soHoaDon));
+
+        int soHangHuy = 0;
+        for (int i = 1; i < tbHangHoaHuy.getRowCount(); i++) {
+            soHangHuy = ++i;
+        }
+        jlbSoHangHuy.setText(String.valueOf(soHangHuy));
+    }
+
+    private void showTableHangHuy(List<QuanLyThongKe> lstThongKe) {
+        dtmHangHuy.setRowCount(0);
+        for (QuanLyThongKe ql : lstThongKe) {
+            dtmHangHuy.addRow(ql.arriveHangHoaHuy());
+        }
+    }
+
+    private void showTableThongKe(List<QuanLyThongKe> lstThongKe) {
+        dtmThongKeDoanhThu.setRowCount(0);
+        for (QuanLyThongKe ql : lstThongKe) {
+            dtmThongKeDoanhThu.addRow(ql.arriveThongke());
+        }
     }
 
     private void fillKhachHang(int row) {
@@ -1078,22 +1126,22 @@ public class FrmDasBoard extends javax.swing.JFrame {
         pnlCard7 = new javax.swing.JPanel();
         jpnThongKe = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
+        jLabel60 = new javax.swing.JLabel();
         jPanel33 = new javax.swing.JPanel();
         jLabel104 = new javax.swing.JLabel();
+        jlbSoHoaDon = new javax.swing.JLabel();
         jPanel34 = new javax.swing.JPanel();
         jLabel105 = new javax.swing.JLabel();
-        jPanel35 = new javax.swing.JPanel();
-        jLabel106 = new javax.swing.JLabel();
+        jlbSoHangHuy = new javax.swing.JLabel();
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton5 = new javax.swing.JRadioButton();
         jComboBox1 = new javax.swing.JComboBox<>();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jPanel36 = new javax.swing.JPanel();
         jPanel38 = new javax.swing.JPanel();
         jComboBox2 = new javax.swing.JComboBox<>();
         jScrollPane13 = new javax.swing.JScrollPane();
-        jTable4 = new javax.swing.JTable();
+        tbDoanhThuThongKe = new javax.swing.JTable();
         jLabel107 = new javax.swing.JLabel();
         jPanel39 = new javax.swing.JPanel();
         jComboBox5 = new javax.swing.JComboBox<>();
@@ -1104,7 +1152,7 @@ public class FrmDasBoard extends javax.swing.JFrame {
         jLabel109 = new javax.swing.JLabel();
         jPanel37 = new javax.swing.JPanel();
         jScrollPane14 = new javax.swing.JScrollPane();
-        jTable5 = new javax.swing.JTable();
+        tbHangHoaHuy = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -4363,6 +4411,9 @@ public class FrmDasBoard extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel11.setText("Doanh Thu");
 
+        jLabel60.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel60.setText("...");
+
         javax.swing.GroupLayout jpnThongKeLayout = new javax.swing.GroupLayout(jpnThongKe);
         jpnThongKe.setLayout(jpnThongKeLayout);
         jpnThongKeLayout.setHorizontalGroup(
@@ -4371,19 +4422,28 @@ public class FrmDasBoard extends javax.swing.JFrame {
                 .addGap(56, 56, 56)
                 .addComponent(jLabel11)
                 .addContainerGap(65, Short.MAX_VALUE))
+            .addGroup(jpnThongKeLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel60, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jpnThongKeLayout.setVerticalGroup(
             jpnThongKeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpnThongKeLayout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addComponent(jLabel11)
-                .addContainerGap(97, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel60, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jPanel33.setBackground(new java.awt.Color(255, 255, 0));
 
         jLabel104.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel104.setText("Số Hóa Đơn");
+
+        jlbSoHoaDon.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jlbSoHoaDon.setText("...");
 
         javax.swing.GroupLayout jPanel33Layout = new javax.swing.GroupLayout(jPanel33);
         jPanel33.setLayout(jPanel33Layout);
@@ -4393,12 +4453,18 @@ public class FrmDasBoard extends javax.swing.JFrame {
                 .addGap(56, 56, 56)
                 .addComponent(jLabel104)
                 .addContainerGap(57, Short.MAX_VALUE))
+            .addGroup(jPanel33Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jlbSoHoaDon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel33Layout.setVerticalGroup(
             jPanel33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel33Layout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addComponent(jLabel104)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jlbSoHoaDon, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -4406,6 +4472,9 @@ public class FrmDasBoard extends javax.swing.JFrame {
 
         jLabel105.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel105.setText("Số Hàng Hủy");
+
+        jlbSoHangHuy.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jlbSoHangHuy.setText("...");
 
         javax.swing.GroupLayout jPanel34Layout = new javax.swing.GroupLayout(jPanel34);
         jPanel34.setLayout(jPanel34Layout);
@@ -4415,35 +4484,19 @@ public class FrmDasBoard extends javax.swing.JFrame {
                 .addContainerGap(55, Short.MAX_VALUE)
                 .addComponent(jLabel105)
                 .addGap(48, 48, 48))
+            .addGroup(jPanel34Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jlbSoHangHuy, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel34Layout.setVerticalGroup(
             jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel34Layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addComponent(jLabel105)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jPanel35.setBackground(new java.awt.Color(255, 255, 0));
-
-        jLabel106.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel106.setText("Tổng Khách Hàng");
-
-        javax.swing.GroupLayout jPanel35Layout = new javax.swing.GroupLayout(jPanel35);
-        jPanel35.setLayout(jPanel35Layout);
-        jPanel35Layout.setHorizontalGroup(
-            jPanel35Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel35Layout.createSequentialGroup()
-                .addContainerGap(34, Short.MAX_VALUE)
-                .addComponent(jLabel106)
-                .addGap(27, 27, 27))
-        );
-        jPanel35Layout.setVerticalGroup(
-            jPanel35Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel35Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jLabel106)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jlbSoHangHuy, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         buttonGroup6.add(jRadioButton1);
@@ -4453,10 +4506,6 @@ public class FrmDasBoard extends javax.swing.JFrame {
         buttonGroup6.add(jRadioButton2);
         jRadioButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jRadioButton2.setText("Theo tháng");
-
-        buttonGroup6.add(jRadioButton5);
-        jRadioButton5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jRadioButton5.setText("Theo năm");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -4483,7 +4532,7 @@ public class FrmDasBoard extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTable4.setModel(new javax.swing.table.DefaultTableModel(
+        tbDoanhThuThongKe.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -4494,7 +4543,7 @@ public class FrmDasBoard extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane13.setViewportView(jTable4);
+        jScrollPane13.setViewportView(tbDoanhThuThongKe);
 
         jLabel107.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel107.setText("Năm");
@@ -4594,7 +4643,7 @@ public class FrmDasBoard extends javax.swing.JFrame {
 
         jTabbedPane2.addTab("Hàng Hóa", jPanel36);
 
-        jTable5.setModel(new javax.swing.table.DefaultTableModel(
+        tbHangHoaHuy.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -4605,7 +4654,7 @@ public class FrmDasBoard extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane14.setViewportView(jTable5);
+        jScrollPane14.setViewportView(tbHangHoaHuy);
 
         javax.swing.GroupLayout jPanel37Layout = new javax.swing.GroupLayout(jPanel37);
         jPanel37.setLayout(jPanel37Layout);
@@ -4642,22 +4691,16 @@ public class FrmDasBoard extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(pnlCard7Layout.createSequentialGroup()
                         .addGroup(pnlCard7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel33, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(pnlCard7Layout.createSequentialGroup()
+                                .addComponent(jPanel33, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(271, 271, 271)
+                                .addComponent(jPanel34, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jRadioButton2))
-                        .addGap(125, 125, 125)
-                        .addGroup(pnlCard7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnlCard7Layout.createSequentialGroup()
-                                .addComponent(jRadioButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(pnlCard7Layout.createSequentialGroup()
-                                .addComponent(jPanel34, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jPanel35, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(pnlCard7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1376, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 214, Short.MAX_VALUE))
+                .addGap(0, 220, Short.MAX_VALUE))
         );
         pnlCard7Layout.setVerticalGroup(
             pnlCard7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -4665,19 +4708,17 @@ public class FrmDasBoard extends javax.swing.JFrame {
                 .addGap(83, 83, 83)
                 .addGroup(pnlCard7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel34, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel35, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel33, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jpnThongKe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(pnlCard7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2)
-                    .addComponent(jRadioButton5))
+                    .addComponent(jRadioButton2))
                 .addGap(18, 18, 18)
                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(146, Short.MAX_VALUE))
+                .addContainerGap(160, Short.MAX_VALUE))
         );
 
         pnlCards.add(pnlCard7, "card8");
@@ -6469,10 +6510,10 @@ public class FrmDasBoard extends javax.swing.JFrame {
         qlnv.setMa(txtMaNhanVien.getText());
         qlnv.setTen(txtTenNhanVien.getText());
         int gender = qlnv.getGioiTinh();
-        if (gender == 0) {
-            rdbtNamNhanVien.isSelected();
+        if (rdbtNamNhanVien.isSelected()) {
+            gender = 0;
         } else {
-            rdbtNuNhanVien.isSelected();
+            gender = 1;
         }
         qlnv.setGioiTinh(gender);
         qlnv.setNgaySinh(jdcNgaySinhNhanVien.getDate());
@@ -6796,7 +6837,6 @@ public class FrmDasBoard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel103;
     private javax.swing.JLabel jLabel104;
     private javax.swing.JLabel jLabel105;
-    private javax.swing.JLabel jLabel106;
     private javax.swing.JLabel jLabel107;
     private javax.swing.JLabel jLabel108;
     private javax.swing.JLabel jLabel109;
@@ -6882,6 +6922,7 @@ public class FrmDasBoard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel57;
     private javax.swing.JLabel jLabel58;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel60;
     private javax.swing.JLabel jLabel63;
     private javax.swing.JLabel jLabel64;
     private javax.swing.JLabel jLabel65;
@@ -6949,7 +6990,6 @@ public class FrmDasBoard extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel32;
     private javax.swing.JPanel jPanel33;
     private javax.swing.JPanel jPanel34;
-    private javax.swing.JPanel jPanel35;
     private javax.swing.JPanel jPanel36;
     private javax.swing.JPanel jPanel37;
     private javax.swing.JPanel jPanel38;
@@ -6964,7 +7004,6 @@ public class FrmDasBoard extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
@@ -6983,8 +7022,6 @@ public class FrmDasBoard extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTable jTable2;
-    private javax.swing.JTable jTable4;
-    private javax.swing.JTable jTable5;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JLabel jTienThua;
@@ -7009,6 +7046,8 @@ public class FrmDasBoard extends javax.swing.JFrame {
     private javax.swing.JLabel jlbId;
     private javax.swing.JLabel jlbIdKhachHang;
     private javax.swing.JLabel jlbIdNhanVien;
+    private javax.swing.JLabel jlbSoHangHuy;
+    private javax.swing.JLabel jlbSoHoaDon;
     private javax.swing.JLabel jlbTrangThaiNhanVIen;
     private javax.swing.JPanel jpbSanPhamChiTiet;
     private javax.swing.JPasswordField jpfMatKhau;
@@ -7042,6 +7081,8 @@ public class FrmDasBoard extends javax.swing.JFrame {
     private javax.swing.JRadioButton rdoTatCa;
     private javax.swing.JTabbedPane tab;
     private javax.swing.JTable tbChiTietSanPham;
+    private javax.swing.JTable tbDoanhThuThongKe;
+    private javax.swing.JTable tbHangHoaHuy;
     private javax.swing.JTable tbKhachHang;
     private javax.swing.JTable tbQlSanPham;
     private javax.swing.JTable tbQuanLyNhanVien;

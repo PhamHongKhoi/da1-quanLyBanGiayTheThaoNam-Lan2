@@ -3,9 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/java/java3/Da13/Da13/src/Views/FrmThemNhanhChatLieu.java</file>
-            <file>file:/D:/java/java3/Da13/Da13/src/Views/FrmDasBoard.java</file>
-            <file>file:/D:/java/java3/Da13/Da13/src/Utilities/SQLServerConnection.java</file>
+            <file>file:/D:/java/DuAn1-main-git/da1-quanLyBanGiayTheThaoNam-Lan2/src/Repository/IThongKeRespository.java</file>
+            <file>file:/D:/java/DuAn1-main-git/da1-quanLyBanGiayTheThaoNam-Lan2/src/DomainModel/ThongKe.java</file>
+            <file>file:/D:/java/DuAn1-main-git/da1-quanLyBanGiayTheThaoNam-Lan2/src/ViewModels/QuanLyThongKe.java</file>
+            <file>file:/D:/java/DuAn1-main-git/da1-quanLyBanGiayTheThaoNam-Lan2/src/Services/IThongKeService.java</file>
+            <file>file:/D:/java/DuAn1-main-git/da1-quanLyBanGiayTheThaoNam-Lan2/src/Services/Iplm/ThongKeService.java</file>
+            <file>file:/D:/java/DuAn1-main-git/da1-quanLyBanGiayTheThaoNam-Lan2/src/Repository/Iplm/ThongKeRespository.java</file>
+            <file>file:/D:/java/DuAn1-main-git/da1-quanLyBanGiayTheThaoNam-Lan2/src/Views/FrmDasBoard.java</file>
         </group>
     </open-files>
 </project-private>
