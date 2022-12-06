@@ -9,6 +9,7 @@ package DomainModel;
  * @author Asus
  */
 public class SanPhamKhuyenMai {
+
     private String id;
     private String tenKhuyenMai;
     private String tenSanPham;
@@ -17,6 +18,12 @@ public class SanPhamKhuyenMai {
     private double soTienConLai;
 
     public SanPhamKhuyenMai() {
+    }
+
+    public SanPhamKhuyenMai(String tenKhuyenMai, String tenSanPham, int trangThai) {
+        this.tenKhuyenMai = tenKhuyenMai;
+        this.tenSanPham = tenSanPham;
+        this.trangThai = trangThai;
     }
 
     public SanPhamKhuyenMai(String id, String tenKhuyenMai, String tenSanPham, double giaBan, int trangThai, double soTienConLai) {
@@ -80,6 +87,5 @@ public class SanPhamKhuyenMai {
     public String toString() {
         return "SanPhamKhuyenMai{" + "id=" + id + ", tenKhuyenMai=" + tenKhuyenMai + ", tenSanPham=" + tenSanPham + ", giaBan=" + giaBan + ", trangThai=" + trangThai + ", soTienConLai=" + soTienConLai + '}';
     }
-    
-    
+
 }

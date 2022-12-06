@@ -20,6 +20,12 @@ public class QuanLySanPhamGiamGia {
     public QuanLySanPhamGiamGia() {
     }
 
+    public QuanLySanPhamGiamGia(String tenKhuyenMai, String tenSanPham, int trangThai) {
+        this.tenKhuyenMai = tenKhuyenMai;
+        this.tenSanPham = tenSanPham;
+        this.trangThai = trangThai;
+    }
+
     public QuanLySanPhamGiamGia(String id, String tenKhuyenMai, String tenSanPham, double giaBan, int trangThai, double soTienConLai) {
         this.id = id;
         this.tenKhuyenMai = tenKhuyenMai;

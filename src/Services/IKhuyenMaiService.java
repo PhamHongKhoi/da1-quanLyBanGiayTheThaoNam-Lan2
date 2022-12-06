@@ -21,4 +21,6 @@ public interface IKhuyenMaiService {
     List<QuanLySanPhamGiamGia> getAllSanPhamGiamGia();
 
     String updateKhuyenMai(QuanLyKhuyenMai qlKm, String id);
+
+    String addSanPhamGiamGia(QuanLySanPhamGiamGia qlSpGG);
 }

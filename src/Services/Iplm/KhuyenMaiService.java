@@ -65,4 +65,15 @@ public class KhuyenMaiService implements IKhuyenMaiService {
         }
     }
 
+    @Override
+    public String addSanPhamGiamGia(QuanLySanPhamGiamGia qlSpGG) {
+        SanPhamKhuyenMai spKm = new SanPhamKhuyenMai(qlSpGG.getTenKhuyenMai(), qlSpGG.getTenSanPham(), qlSpGG.getTrangThai());
+        boolean add = kmr.addSanPhamKhuyenMai(spKm);
+        if (add == true) {
+            return "Thêm thành công";
+        } else {
+            return "Thêm thất bại";
+        }
+    }
+
 }

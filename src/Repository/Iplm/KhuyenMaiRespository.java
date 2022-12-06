@@ -110,4 +110,23 @@ public class KhuyenMaiRespository implements IKhuyenMaiRespository {
         return check > 0;
     }
 
+    @Override
+    public boolean addSanPhamKhuyenMai(SanPhamKhuyenMai spKm) {
+        String query = "INSERT INTO [dbo].[sanPhamKhuyenMai]\n"
+                + "           ([IdSanPham]\n"
+                + "           ,[IdKhuyenMai]\n"
+                + "           ,[TrangThai])\n"
+                + "     VALUES(?,?,?)";
+        int check = 0;
+        try ( Connection con = SQLServerConnection.getConnection();  PreparedStatement ps = con.prepareCall(query)) {
+            ps.setObject(1, spKm.getTenSanPham());
+            ps.setObject(2, spKm.getTenKhuyenMai());
+            ps.setObject(3, spKm.getTrangThai());
+            check = ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+        return check > 0;
+    }
+
 }
