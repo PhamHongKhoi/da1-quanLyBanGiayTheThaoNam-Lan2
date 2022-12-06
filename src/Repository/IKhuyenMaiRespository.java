@@ -19,4 +19,6 @@ public interface IKhuyenMaiRespository {
     boolean add(KhuyenMai km);
 
     List<SanPhamKhuyenMai> getAllSpKhuyenMai();
+
+    boolean update(KhuyenMai km, String id);
 }

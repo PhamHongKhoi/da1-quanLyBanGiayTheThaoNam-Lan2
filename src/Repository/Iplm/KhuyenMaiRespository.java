@@ -86,4 +86,28 @@ public class KhuyenMaiRespository implements IKhuyenMaiRespository {
         }
     }
 
+    @Override
+    public boolean update(KhuyenMai km, String id) {
+        String query = "UPDATE [dbo].[KhuyenMai]\n"
+                + "   SET [TenKhuyenMai] = ?\n"
+                + "      ,[LoaiKhuyenMai] = ?\n"
+                + "      ,[NgayBatDau] = ?\n"
+                + "      ,[NgayKetThuc] = ?\n"
+                + "      ,[TrangThai] = ?\n"
+                + " WHERE [Id] = ?";
+        int check = 0;
+        try ( Connection con = SQLServerConnection.getConnection();  PreparedStatement ps = con.prepareCall(query)) {
+            ps.setObject(1, km.getTenKhuyenMai());
+            ps.setObject(2, km.getLoaiKhuyenMai());
+            ps.setObject(3, km.getNgayBatDau());
+            ps.setObject(4, km.getNgatKetThuc());
+            ps.setObject(5, km.getTrangThai());
+            ps.setObject(6, id);
+            check = ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+        return check > 0;
+    }
+
 }

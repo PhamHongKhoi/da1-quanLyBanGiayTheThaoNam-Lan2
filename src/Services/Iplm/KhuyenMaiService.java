@@ -54,4 +54,15 @@ public class KhuyenMaiService implements IKhuyenMaiService {
         return lstSpGiamGia;
     }
 
+    @Override
+    public String updateKhuyenMai(QuanLyKhuyenMai qlKm, String id) {
+        KhuyenMai km = new KhuyenMai(null, qlKm.getTenKhuyenMai(), qlKm.getLoaiKhuyenMai(), qlKm.getNgayBatDau(), qlKm.getNgatKetThuc(), qlKm.getTrangThai());
+        boolean update = kmr.update(km, id);
+        if (update == true) {
+            return "sửa thành công";
+        } else {
+            return "Sửa thất bại";
+        }
+    }
+
 }

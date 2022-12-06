@@ -5,6 +5,8 @@
         <group>
             <file>file:/D:/java/DuAn1-main-git/da1-quanLyBanGiayTheThaoNam-Lan2/src/ViewModels/QuanLySanPhamGiamGia.java</file>
             <file>file:/D:/java/DuAn1-main-git/da1-quanLyBanGiayTheThaoNam-Lan2/src/ViewModels/QuanLyKhuyenMai.java</file>
+            <file>file:/D:/java/DuAn1-main-git/da1-quanLyBanGiayTheThaoNam-Lan2/src/Services/Iplm/KichCoRService.java</file>
+            <file>file:/D:/java/DuAn1-main-git/da1-quanLyBanGiayTheThaoNam-Lan2/src/Views/FrmThemNhanhChatLieu.java</file>
             <file>file:/D:/java/DuAn1-main-git/da1-quanLyBanGiayTheThaoNam-Lan2/src/DomainModel/ThongKe.java</file>
             <file>file:/D:/java/DuAn1-main-git/da1-quanLyBanGiayTheThaoNam-Lan2/src/Services/Iplm/KhuyenMaiService.java</file>
             <file>file:/D:/java/DuAn1-main-git/da1-quanLyBanGiayTheThaoNam-Lan2/src/Repository/IKhuyenMaiRespository.java</file>
@@ -12,10 +14,14 @@
             <file>file:/D:/java/DuAn1-main-git/da1-quanLyBanGiayTheThaoNam-Lan2/src/Repository/Iplm/KhuyenMaiRespository.java</file>
             <file>file:/D:/java/DuAn1-main-git/da1-quanLyBanGiayTheThaoNam-Lan2/src/Repository/IThongKeRespository.java</file>
             <file>file:/D:/java/DuAn1-main-git/da1-quanLyBanGiayTheThaoNam-Lan2/src/Services/IKhuyenMaiService.java</file>
+            <file>file:/D:/java/DuAn1-main-git/da1-quanLyBanGiayTheThaoNam-Lan2/src/Services/Iplm/SanPhamServiceIplm.java</file>
+            <file>file:/D:/java/DuAn1-main-git/da1-quanLyBanGiayTheThaoNam-Lan2/src/Services/ISanPhamService.java</file>
             <file>file:/D:/java/DuAn1-main-git/da1-quanLyBanGiayTheThaoNam-Lan2/src/ViewModels/QuanLyThongKe.java</file>
+            <file>file:/D:/java/DuAn1-main-git/da1-quanLyBanGiayTheThaoNam-Lan2/src/Services/Iplm/MauSacServiceIplm.java</file>
             <file>file:/D:/java/DuAn1-main-git/da1-quanLyBanGiayTheThaoNam-Lan2/src/Services/Iplm/ThongKeService.java</file>
             <file>file:/D:/java/DuAn1-main-git/da1-quanLyBanGiayTheThaoNam-Lan2/src/Repository/Iplm/ThongKeRespository.java</file>
             <file>file:/D:/java/DuAn1-main-git/da1-quanLyBanGiayTheThaoNam-Lan2/src/DomainModel/SanPhamKhuyenMai.java</file>
+            <file>file:/D:/java/DuAn1-main-git/da1-quanLyBanGiayTheThaoNam-Lan2/src/Views/FrmChaoMoiNguoi.java</file>
             <file>file:/D:/java/DuAn1-main-git/da1-quanLyBanGiayTheThaoNam-Lan2/src/Views/FrmDasBoard.java</file>
             <file>file:/D:/java/DuAn1-main-git/da1-quanLyBanGiayTheThaoNam-Lan2/src/DomainModel/KhuyenMai.java</file>
         </group>

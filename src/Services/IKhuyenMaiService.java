@@ -19,4 +19,6 @@ public interface IKhuyenMaiService {
     String add(QuanLyKhuyenMai qlKm);
 
     List<QuanLySanPhamGiamGia> getAllSanPhamGiamGia();
+
+    String updateKhuyenMai(QuanLyKhuyenMai qlKm, String id);
 }
