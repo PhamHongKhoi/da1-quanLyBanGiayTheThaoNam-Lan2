@@ -3,10 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/admin/Documents/da1-quanLyBanGiayTheThaoNam-Lan2/src/Views/FrmDasBoard.java</file>
-            <file>file:/C:/Users/admin/Documents/da1-quanLyBanGiayTheThaoNam-Lan2/src/Repository/Iplm/mauSacRespository.java</file>
-            <file>file:/C:/Users/admin/Documents/da1-quanLyBanGiayTheThaoNam-Lan2/src/Repository/IKichCo.java</file>
-            <file>file:/C:/Users/admin/Documents/da1-quanLyBanGiayTheThaoNam-Lan2/src/Repository/Iplm/KichCorepository.java</file>
+            <file>file:/C:/Users/Admin/Documents/Da13/src/Repository/Iplm/ChiTietHoaDonRepository.java</file>
+            <file>file:/C:/Users/Admin/Documents/Da13/src/Services/IChiTietHoaDonService.java</file>
+            <file>file:/C:/Users/Admin/Documents/Da13/src/Views/FrmDasBoard.java</file>
+            <file>file:/C:/Users/Admin/Documents/Da13/src/Repository/IChiTietHoaDonRepository.java</file>
+            <file>file:/C:/Users/Admin/Documents/Da13/src/Utilities/SQLServerConnection.java</file>
+            <file>file:/C:/Users/Admin/Documents/Da13/src/DomainModel/ChiTietHoaDon.java</file>
+            <file>file:/C:/Users/Admin/Documents/Da13/src/Services/Iplm/ChiTietHoaDonService.java</file>
         </group>
     </open-files>
 </project-private>
