@@ -18,4 +18,8 @@ public interface IChiTietHoaDonService {
     String saveHoaDonCT(ChiTietHoaDon chiTietHoaDon);
 
     String delete(String idHD, String idCTSP);
+    
+    String updateSoLuongHoaDonCT(ChiTietHoaDon chiTietHoaDon, String idHD, String idCTSP);
+    
+    ArrayList<ChiTietHoaDon> getSoLuongByID(String idHD, String idCTSP);
 }

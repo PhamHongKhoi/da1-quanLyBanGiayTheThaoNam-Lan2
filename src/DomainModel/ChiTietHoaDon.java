@@ -48,6 +48,10 @@ public class ChiTietHoaDon {
         this.idCTSP = idCTSP;
     }
 
+    public ChiTietHoaDon(int soLuong) {
+        this.soLuong = soLuong;
+    }
+
     public ChiTietHoaDon() {
     }
 

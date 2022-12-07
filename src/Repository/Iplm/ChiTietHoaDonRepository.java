@@ -77,4 +77,40 @@ public class ChiTietHoaDonRepository implements IChiTietHoaDonRepository {
         return check > 0;
     }
 
+    public boolean updateSoLuongHoaDonCT(ChiTietHoaDon chiTietHoaDon, String idHD, String idCTSP) {
+        String query = "UPDATE [dbo].[HoaDonChiTiet]\n"
+                + "   SET [SoLuong] = ?"
+                + " WHERE IdHD = ? and IdCTSP = ?";
+        int check = 0;
+        try (Connection con = SQLServerConnection.getConnection(); PreparedStatement ps = con.prepareStatement(query);) {
+            ps.setObject(1, chiTietHoaDon.getSoLuong());
+            ps.setObject(2, idHD);
+            ps.setObject(3, idCTSP);
+            check = ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return check > 0;
+
+    }
+
+    public ArrayList<ChiTietHoaDon> getSoLuongByID(String idHD, String idCTSP) {
+        String query = "SELECT [SoLuong]\n"
+                + "  FROM [dbo].[HoaDonChiTiet] WHERE IdHD = ? and IdCTSP = ?";
+        ArrayList<ChiTietHoaDon> list = new ArrayList<>();
+        try (Connection con = SQLServerConnection.getConnection(); PreparedStatement ps = con.prepareStatement(query);) {
+            ps.setObject(1, idHD);
+            ps.setObject(2, idCTSP);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                ChiTietHoaDon chiTietHoaDon = new ChiTietHoaDon(rs.getInt(1));
+                list.add(chiTietHoaDon);
+            }
+            return list;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 }

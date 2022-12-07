@@ -17,4 +17,8 @@ public interface IChiTietHoaDonRepository {
     boolean saveHoaDonCT(ChiTietHoaDon chiTietHoaDon);
     
     boolean delete(String idHD, String idCTSP);
+    
+    boolean updateSoLuongHoaDonCT(ChiTietHoaDon chiTietHoaDon, String idHD, String idCTSP);
+    
+    ArrayList<ChiTietHoaDon> getSoLuongByID(String idHD, String idCTSP);
 }

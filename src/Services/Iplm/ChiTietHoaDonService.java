@@ -39,4 +39,19 @@ public class ChiTietHoaDonService implements IChiTietHoaDonService {
             return "Xoá thất bại";
         }
     }
+
+    @Override
+    public String updateSoLuongHoaDonCT(ChiTietHoaDon chiTietHoaDon, String idHD, String idCTSP) {
+        if (chiTietHoaDonRepository.updateSoLuongHoaDonCT(chiTietHoaDon, idHD, idCTSP)) {
+            return "Update thành công sản phẩm trong đơn hàng";
+        } else {
+            return "Update so luong sp gh thất bại";
+        }
+    }
+
+    @Override
+    public ArrayList<ChiTietHoaDon> getSoLuongByID(String idHD, String idCTSP) {
+        return chiTietHoaDonRepository.getSoLuongByID(idHD, idCTSP);
+              
+    }
 }
