@@ -27,4 +27,6 @@ public interface IKhachHangRespository {
 
     List<KhachHang> getbyTen(String ten);
 
+    KhachHang getMaKh(String ma);
+
 }

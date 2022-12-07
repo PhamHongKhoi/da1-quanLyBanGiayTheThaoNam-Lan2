@@ -28,4 +28,6 @@ public interface INhanVien {
     List<NhanVien> getbyTennv(String ten);
 
     List<NhanVien> getbyGioiTinh(int gioiTinh);
+    
+    NhanVien getMaNV(String manv);
 }

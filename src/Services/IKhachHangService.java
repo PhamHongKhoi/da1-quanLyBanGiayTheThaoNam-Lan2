@@ -26,4 +26,6 @@ public interface IKhachHangService {
     List<QuanLyKhachHang> getbyGioiTinh(int gioiTinh);
 
     List<QuanLyKhachHang> getbyTen(String ten);
+
+    QuanLyKhachHang getMaKh(String ma);
 }

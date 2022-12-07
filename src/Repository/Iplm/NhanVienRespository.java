@@ -192,4 +192,21 @@ public class NhanVienRespository implements INhanVien {
         return null;
     }
 
+    @Override
+    public NhanVien getMaNV(String manv) {
+        String sql = "select * from DA1.dbo.NhanVien where Ma = ?";
+        try ( Connection con = SQLServerConnection.getConnection();  PreparedStatement prst = con.prepareStatement(sql)) {
+            prst.setObject(1, manv);
+            ResultSet rs = prst.executeQuery();
+            while (rs.next()) {
+                NhanVien nv = new NhanVien(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getDate(5), rs.getString(6), rs.getString(7), rs.getInt(8), rs.getInt(9), rs.getString(10), rs.getString(11), rs.getString(12));
+                return nv;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace(System.out);
+        }
+        return null;
+    }
+
 }

@@ -28,4 +28,6 @@ public interface INhanVienService {
     List<QuanLyNhanVien> getbyTennv(String ten);
 
     List<QuanLyNhanVien> getbyGioiTinh(int gioiTinh);
+    
+     QuanLyNhanVien getManv (String manv);
 }

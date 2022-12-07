@@ -16,44 +16,57 @@ import java.util.List;
  * @author Asus
  */
 public class KhachHangService implements IKhachHangService {
-    
+
     KhachHangRespositoryIplm khr = new KhachHangRespositoryIplm();
-    
+
     @Override
     public List<QuanLyKhachHang> getAll() {
         List<KhachHang> kh = khr.getAll();
         List<QuanLyKhachHang> lstQlKh = new ArrayList<>();
-        
+
         for (KhachHang ql : kh) {
             QuanLyKhachHang qlKh = new QuanLyKhachHang(ql.getId(), ql.getMa(), ql.getTen(), ql.getGioiTinh(), ql.getNgaySinh(), ql.getSoDienThoai(), ql.getDiaChi(), ql.getTrangThai());
             lstQlKh.add(qlKh);
         }
-        
+
         return lstQlKh;
     }
-    
+
     @Override
     public String add(QuanLyKhachHang qlkh) {
-        KhachHang kh = new KhachHang(null, qlkh.getMa(), qlkh.getTen(), qlkh.getGioiTinh(), qlkh.getNgaySinh(), qlkh.getSoDienThoai(), qlkh.getDiaChi(), qlkh.getTrangThai());
-        boolean add = khr.add(kh);
-        if (add == true) {
-            return "Thêm thành công";
+
+        QuanLyKhachHang qlKhachhang = new QuanLyKhachHang();
+        qlKhachhang = new KhachHangService().getMaKh(qlkh.getMa());
+        if (qlKhachhang != null) {
+            return "Mã trùng yêu cầu nhập lại";
         } else {
-            return "Thêm thất bại";
+            KhachHang kh = new KhachHang(null, qlkh.getMa(), qlkh.getTen(), qlkh.getGioiTinh(), qlkh.getNgaySinh(), qlkh.getSoDienThoai(), qlkh.getDiaChi(), qlkh.getTrangThai());
+            boolean add = khr.add(kh);
+            if (add == true) {
+                return "Thêm thành công";
+            } else {
+                return "Thêm thất bại";
+            }
         }
     }
-    
+
     @Override
     public String update(QuanLyKhachHang qlkh, String id) {
-        KhachHang kh = new KhachHang(null, qlkh.getMa(), qlkh.getTen(), qlkh.getGioiTinh(), qlkh.getNgaySinh(), qlkh.getSoDienThoai(), qlkh.getDiaChi(), qlkh.getTrangThai());
-        boolean update = khr.update(kh, id);
-        if (update = true) {
-            return "Sửa thành công";
+        QuanLyKhachHang qlKhachhang = new QuanLyKhachHang();
+        qlKhachhang = new KhachHangService().getMaKh(qlkh.getMa());
+        if (qlKhachhang != null) {
+            return "Mã trùng yêu cầu nhập lại";
         } else {
-            return "Sửa thất bại";
+            KhachHang kh = new KhachHang(null, qlkh.getMa(), qlkh.getTen(), qlkh.getGioiTinh(), qlkh.getNgaySinh(), qlkh.getSoDienThoai(), qlkh.getDiaChi(), qlkh.getTrangThai());
+            boolean update = khr.update(kh, id);
+            if (update = true) {
+                return "Sửa thành công";
+            } else {
+                return "Sửa thất bại";
+            }
         }
     }
-    
+
     @Override
     public String delete(String id) {
         boolean delete = khr.delete(id);
@@ -63,44 +76,64 @@ public class KhachHangService implements IKhachHangService {
             return "Xóa thất bại";
         }
     }
-    
+
     @Override
     public List<QuanLyKhachHang> getbyTrangThai(int trangThai) {
         List<KhachHang> kh = khr.getbyTrangThai(trangThai);
         List<QuanLyKhachHang> lstQlKh = new ArrayList<>();
-        
+
         for (KhachHang ql : kh) {
             QuanLyKhachHang qlKh = new QuanLyKhachHang(ql.getId(), ql.getMa(), ql.getTen(), ql.getGioiTinh(), ql.getNgaySinh(), ql.getSoDienThoai(), ql.getDiaChi(), ql.getTrangThai());
             lstQlKh.add(qlKh);
         }
-        
+
         return lstQlKh;
     }
-    
+
     @Override
     public List<QuanLyKhachHang> getbyGioiTinh(int gioiTinh) {
         List<KhachHang> kh = khr.getbyGioiTinh(gioiTinh);
         List<QuanLyKhachHang> lstQlKh = new ArrayList<>();
-        
+
         for (KhachHang ql : kh) {
             QuanLyKhachHang qlKh = new QuanLyKhachHang(ql.getId(), ql.getMa(), ql.getTen(), ql.getGioiTinh(), ql.getNgaySinh(), ql.getSoDienThoai(), ql.getDiaChi(), ql.getTrangThai());
             lstQlKh.add(qlKh);
         }
-        
+
         return lstQlKh;
     }
-    
+
     @Override
     public List<QuanLyKhachHang> getbyTen(String ten) {
         List<KhachHang> kh = khr.getbyTen(ten);
         List<QuanLyKhachHang> lstQlKh = new ArrayList<>();
-        
+
         for (KhachHang ql : kh) {
             QuanLyKhachHang qlKh = new QuanLyKhachHang(ql.getId(), ql.getMa(), ql.getTen(), ql.getGioiTinh(), ql.getNgaySinh(), ql.getSoDienThoai(), ql.getDiaChi(), ql.getTrangThai());
             lstQlKh.add(qlKh);
         }
-        
+
         return lstQlKh;
     }
-    
+
+    @Override
+    public QuanLyKhachHang getMaKh(String ma) {
+        KhachHang cv = khr.getMaKh(ma);
+        if (cv != null) {
+            QuanLyKhachHang ql = new QuanLyKhachHang();
+            ql.setId(cv.getId());
+            ql.setMa(cv.getMa());
+            ql.setTen(cv.getTen());
+            ql.setGioiTinh(cv.getGioiTinh());
+            ql.setNgaySinh(cv.getNgaySinh());
+            ql.setDiaChi(cv.getDiaChi());
+            ql.setSoDienThoai(cv.getSoDienThoai());
+            ql.setTrangThai(cv.getTrangThai());
+
+            return ql;
+        } else {
+            return null;
+        }
+    }
+
 }
