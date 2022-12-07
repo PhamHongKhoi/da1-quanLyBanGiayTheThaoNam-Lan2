@@ -32,23 +32,35 @@ public class SanPhamServiceIplm implements ISanPhamService {
 
     @Override
     public String add(QuanLySanPham qlsp) {
-        SanPham sp = new SanPham(null, qlsp.getMa(), qlsp.getTen(), qlsp.getTrangThai());
-        boolean add = spr.add(sp);
-        if (add == true) {
-            return "Thêm thành công";
+        QuanLySanPham qlKhachhang = new QuanLySanPham();
+        qlKhachhang = new SanPhamServiceIplm().getMaSp2(qlsp.getMa());
+        if (qlKhachhang != null) {
+            return "Mã trùng yêu cầu nhập lại";
         } else {
-            return "Thêm thất bại";
+            SanPham sp = new SanPham(null, qlsp.getMa(), qlsp.getTen(), qlsp.getTrangThai());
+            boolean add = spr.add(sp);
+            if (add == true) {
+                return "Thêm thành công";
+            } else {
+                return "Thêm thất bại";
+            }
         }
     }
 
     @Override
     public String update(QuanLySanPham qlsp, String id) {
+         QuanLySanPham qlKhachhang = new QuanLySanPham();
+        qlKhachhang = new SanPhamServiceIplm().getMaSp2(qlsp.getMa());
+        if (qlKhachhang != null) {
+            return "Mã trùng yêu cầu nhập lại";
+        } else {
         SanPham sp = new SanPham(null, qlsp.getMa(), qlsp.getTen(), qlsp.getTrangThai());
         boolean update = spr.update(sp, id);
         if (update == true) {
             return "Sửa thành công";
         } else {
             return "Sửa thất bại";
+        }
         }
     }
 
@@ -104,6 +116,23 @@ public class SanPhamServiceIplm implements ISanPhamService {
             lstSp.add(ql);
         }
         return lstSp;
+    }
+
+    @Override
+    public QuanLySanPham getMaSp2(String ma) {
+        SanPham cv = spr.getMaSp2(ma);
+        if (cv != null) {
+            QuanLySanPham ql = new QuanLySanPham();
+            ql.setId(cv.getId());
+            ql.setMa(cv.getMa());
+            ql.setTen(cv.getTen());
+            ql.setTrangThai(cv.getTrangThai());
+
+            return ql;
+        } else {
+            return null;
+        }
+
     }
 
 }

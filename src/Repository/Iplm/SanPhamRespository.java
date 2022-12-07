@@ -159,4 +159,26 @@ public class SanPhamRespository implements ISanPhamRespository {
         return null;
     }
 
+    @Override
+    public SanPham getMaSp2(String ma) {
+        String query = " select * from DA1.dbo.SanPham Where Ma = ? ";
+        try ( Connection con = SQLServerConnection.getConnection();  PreparedStatement ps = con.prepareCall(query)) {
+            ps.setObject(1, ma);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                SanPham sp = new SanPham(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4));
+                return sp;
+            }
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+        return null;
+    }
+    
+    public static void main(String[] args) {
+        SanPham sp = new SanPhamRespository().getMaSp2("04");
+        System.out.println(""+sp.toString());
+        
+    }
+
 }

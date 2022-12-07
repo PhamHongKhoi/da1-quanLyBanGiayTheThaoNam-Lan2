@@ -1062,7 +1062,6 @@ public class FrmDasBoard extends javax.swing.JFrame {
         txtTenThuocTinh = new javax.swing.JTextField();
         cbbThuocTinhSanPham = new javax.swing.JComboBox<>();
         txtMaThuocTinh = new javax.swing.JTextField();
-        txtJd = new javax.swing.JTextField();
         txtLopLotTrong = new javax.swing.JTextField();
         txtDeNgoai = new javax.swing.JTextField();
         txtDaPhu = new javax.swing.JTextField();
@@ -1071,6 +1070,7 @@ public class FrmDasBoard extends javax.swing.JFrame {
         btSuaThuocTinh = new javax.swing.JButton();
         btXoaThuocTinh = new javax.swing.JButton();
         btLamMoiThuocTinh = new javax.swing.JButton();
+        txtJd = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jPanel18 = new javax.swing.JPanel();
         jScrollPane7 = new javax.swing.JScrollPane();
@@ -3039,6 +3039,8 @@ public class FrmDasBoard extends javax.swing.JFrame {
             }
         });
 
+        txtJd.setText("id.");
+
         javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
         jPanel17.setLayout(jPanel17Layout);
         jPanel17Layout.setHorizontalGroup(
@@ -3051,11 +3053,12 @@ public class FrmDasBoard extends javax.swing.JFrame {
                     .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtTenThuocTinh, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
-                    .addComponent(txtMaThuocTinh)
-                    .addComponent(txtJd)
-                    .addComponent(cbbThuocTinhSanPham, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(txtTenThuocTinh, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
+                        .addComponent(txtMaThuocTinh)
+                        .addComponent(cbbThuocTinhSanPham, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtJd, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(67, 67, 67)
                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel54, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -3078,7 +3081,7 @@ public class FrmDasBoard extends javax.swing.JFrame {
                     .addComponent(rdbtMauSac, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(rdbtChatLieu, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(rdbtDongSanPham, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 220, Short.MAX_VALUE)
                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btSuaThuocTinh, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btThemThuocTinh, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -3094,9 +3097,9 @@ public class FrmDasBoard extends javax.swing.JFrame {
                     .addComponent(rdbtDongSanPham)
                     .addComponent(jLabel18)
                     .addComponent(jLabel54)
-                    .addComponent(txtJd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtDaChinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btThemThuocTinh))
+                    .addComponent(btThemThuocTinh)
+                    .addComponent(txtJd))
                 .addGap(24, 24, 24)
                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rdbtKichCo)
@@ -5302,10 +5305,15 @@ public class FrmDasBoard extends javax.swing.JFrame {
 
     private void btThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btThemActionPerformed
         QuanLySanPham qlsp = getSanPham();
-        String add = spsi.add(qlsp);
-        JOptionPane.showMessageDialog(this, add);
-        lstQLSp = spsi.getAll();
-        showTableSanPham(lstQLSp);
+        if (txtMaSanPham.getText().isEmpty() || txtTenSanPham.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "không được để trống !");
+        } else {
+
+            String add = spsi.add(qlsp);
+            JOptionPane.showMessageDialog(this, add);
+            lstQLSp = spsi.getAll();
+            showTableSanPham(lstQLSp);
+        }
     }//GEN-LAST:event_btThemActionPerformed
 
     private void btSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSuaActionPerformed
@@ -7583,7 +7591,7 @@ public class FrmDasBoard extends javax.swing.JFrame {
     private javax.swing.JTextField txtDiaChiKhachHang;
     private javax.swing.JTextField txtDiaChiLS;
     private javax.swing.JTextField txtDiaChiNhanVien;
-    private javax.swing.JTextField txtJd;
+    private javax.swing.JLabel txtJd;
     private javax.swing.JTextField txtLopLotTrong;
     private javax.swing.JTextField txtMaHD;
     private javax.swing.JTextField txtMaHDGiaoHang;

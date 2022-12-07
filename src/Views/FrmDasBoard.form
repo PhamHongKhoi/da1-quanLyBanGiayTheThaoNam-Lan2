@@ -2820,11 +2820,13 @@
                                           <Component id="jLabel18" alignment="0" min="-2" pref="43" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="txtTenThuocTinh" pref="220" max="32767" attributes="0"/>
-                                          <Component id="txtMaThuocTinh" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="txtJd" max="32767" attributes="0"/>
-                                          <Component id="cbbThuocTinhSanPham" alignment="0" min="-2" pref="124" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Component id="txtTenThuocTinh" pref="220" max="32767" attributes="0"/>
+                                              <Component id="txtMaThuocTinh" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="cbbThuocTinhSanPham" alignment="0" min="-2" pref="124" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Component id="txtJd" min="-2" pref="49" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -2852,7 +2854,7 @@
                                           <Component id="rdbtChatLieu" min="-2" pref="121" max="-2" attributes="0"/>
                                           <Component id="rdbtDongSanPham" alignment="0" min="-2" pref="121" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace max="32767" attributes="0"/>
+                                      <EmptySpace pref="220" max="32767" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="btSuaThuocTinh" min="-2" pref="120" max="-2" attributes="0"/>
                                           <Component id="btThemThuocTinh" min="-2" pref="120" max="-2" attributes="0"/>
@@ -2871,9 +2873,9 @@
                                           <Component id="rdbtDongSanPham" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabel18" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabel54" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="txtJd" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="txtDaChinh" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="btThemThuocTinh" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="txtJd" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
@@ -3054,8 +3056,6 @@
                             </Component>
                             <Component class="javax.swing.JTextField" name="txtMaThuocTinh">
                             </Component>
-                            <Component class="javax.swing.JTextField" name="txtJd">
-                            </Component>
                             <Component class="javax.swing.JTextField" name="txtLopLotTrong">
                             </Component>
                             <Component class="javax.swing.JTextField" name="txtDeNgoai">
@@ -3095,6 +3095,11 @@
                               <Events>
                                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btLamMoiThuocTinhActionPerformed"/>
                               </Events>
+                            </Component>
+                            <Component class="javax.swing.JLabel" name="txtJd">
+                              <Properties>
+                                <Property name="text" type="java.lang.String" value="id."/>
+                              </Properties>
                             </Component>
                           </SubComponents>
                         </Container>

@@ -29,4 +29,6 @@ public interface ISanPhamService {
 
     List<QuanLySanPham> getTrangThai(int trangThai);
 
+    QuanLySanPham getMaSp2(String ma);
+
 }
