@@ -18,10 +18,10 @@ import Repository.IChatLieuRespository;
  * @author admin
  */
 public class ChatLieurepository implements IChatLieuRespository {
-
+    
     @Override
     public List<ChatLieu> getAll() {
-
+        
         String query = "SELECT [Id]\n"
                 + "      ,[Ma]\n"
                 + "      ,[DaChinh]\n"
@@ -42,9 +42,9 @@ public class ChatLieurepository implements IChatLieuRespository {
             e.printStackTrace(System.out);
         }
         return null;
-
+        
     }
-
+    
     @Override
     public boolean add(ChatLieu t) {
         String query = "INSERT INTO [dbo].[ChatLieu]\n"
@@ -70,7 +70,7 @@ public class ChatLieurepository implements IChatLieuRespository {
         }
         return check > 0;
     }
-
+    
     @Override
     public boolean delete(String ma) {
         String query = "DELETE FROM [dbo].[ChatLieu]\n"
@@ -79,13 +79,13 @@ public class ChatLieurepository implements IChatLieuRespository {
         try ( Connection con = SQLServerConnection.getConnection();  PreparedStatement ps = con.prepareCall(query)) {
             ps.setObject(1, ma);
             check = ps.executeUpdate();
-
+            
         } catch (Exception e) {
             e.printStackTrace(System.out);
         }
         return check > 0;
     }
-
+    
     @Override
     public boolean update(ChatLieu cv, String ma) {
         String query = "UPDATE [dbo].[ChatLieu]\n"
@@ -108,9 +108,9 @@ public class ChatLieurepository implements IChatLieuRespository {
             e.printStackTrace(System.out);
         }
         return check > 0;
-
+        
     }
-
+    
     @Override
     public boolean themNhanhChatLieu(ChatLieu cl) {
         String query = "INSERT INTO [dbo].[ChatLieu]\n"
@@ -125,5 +125,29 @@ public class ChatLieurepository implements IChatLieuRespository {
         }
         return check > 0;
     }
-
+    
+    @Override
+    public ChatLieu getmaKc(String ma) {
+        String query = "SELECT [Id]\n"
+                + "      ,[Ma]\n"
+                + "      ,[DaChinh]\n"
+                + "      ,[DaPhu]\n"
+                + "      ,[DeNgoai]\n"
+                + "      ,[LopLotTrong]\n"
+                + "      ,[TrangThai]\n"
+                + "  FROM [dbo].[ChatLieu] where Ma = ? ";
+        try ( Connection con = SQLServerConnection.getConnection();  PreparedStatement ps = con.prepareCall(query)) {
+            ps.setObject(1, ma);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                ChatLieu qlCt = new ChatLieu(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getInt(7));
+                return qlCt;
+            }
+            
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+        return null;
+    }
+    
 }

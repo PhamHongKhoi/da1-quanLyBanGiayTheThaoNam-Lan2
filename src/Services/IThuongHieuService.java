@@ -24,4 +24,6 @@ public interface IThuongHieuService {
 
     String themNhanh(QuanLyThuongHieu qlTh);
 
+    QuanLyThuongHieu getmakc(String ma);
+
 }

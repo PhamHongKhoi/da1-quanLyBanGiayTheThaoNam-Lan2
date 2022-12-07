@@ -36,13 +36,19 @@ public class DongSanPhamImpl implements IDongSanPhamService {
 
     @Override
     public String add(QuanLyDongSanPham t) {
-
-        DongSanPham kichCo = new DongSanPham("", t.getMa(), t.getTen(), t.getTrangThai());
-        boolean add = rp.add(kichCo);
-        if (add == true) {
-            return "thêm thành công";
+        QuanLyDongSanPham qlKhachhang = new QuanLyDongSanPham();
+        qlKhachhang = new DongSanPhamImpl().getmakc(t.getMa());
+        if (qlKhachhang != null) {
+            return "Mã trùng yêu cầu nhập lại";
         } else {
-            return " thêm thất bại ";
+
+            DongSanPham kichCo = new DongSanPham("", t.getMa(), t.getTen(), t.getTrangThai());
+            boolean add = rp.add(kichCo);
+            if (add == true) {
+                return "thêm thành công";
+            } else {
+                return " thêm thất bại ";
+            }
         }
     }
 
@@ -58,12 +64,14 @@ public class DongSanPhamImpl implements IDongSanPhamService {
 
     @Override
     public String update(QuanLyDongSanPham cv, String id) {
-        DongSanPham kichCo = new DongSanPham("", cv.getMa(), cv.getTen(), cv.getTrangThai());
-        boolean add = rp.update(kichCo, id);
-        if (add == true) {
-            return "sửa thành công";
-        } else {
-            return "sửa thất bại ";
+        
+            DongSanPham kichCo = new DongSanPham("", cv.getMa(), cv.getTen(), cv.getTrangThai());
+            boolean add = rp.update(kichCo, id);
+            if (add == true) {
+                return "sửa thành công";
+            } else {
+                return "sửa thất bại ";
+            
         }
     }
 
@@ -75,6 +83,22 @@ public class DongSanPhamImpl implements IDongSanPhamService {
             return "Thêm thành công";
         } else {
             return "Thêm thất bại";
+        }
+    }
+
+    @Override
+    public QuanLyDongSanPham getmakc(String ma) {
+        DongSanPham cv = rp.getmaKc(ma);
+        if (cv != null) {
+            QuanLyDongSanPham ql = new QuanLyDongSanPham();
+            ql.setId(cv.getId());
+            ql.setMa(cv.getMa());
+            ql.setTen(cv.getTen());
+            ql.setTrangThai(cv.getTrangThai());
+
+            return ql;
+        } else {
+            return null;
         }
     }
 

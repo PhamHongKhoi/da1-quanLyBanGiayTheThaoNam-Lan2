@@ -64,18 +64,14 @@ public class KieuDangImpl implements IKieuDangService {
 
     @Override
     public String update(QuanLyKieuDang cv, String id) {
-        QuanLyKieuDang qlKhachhang = new QuanLyKieuDang();
-        qlKhachhang = new KieuDangImpl().getmakc(cv.getMa());
-        if (qlKhachhang != null) {
-            return "Mã trùng yêu cầu nhập lại";
-        } else {
+       
         KieuDang thuongHieu = new KieuDang("", cv.getMa(), cv.getTen(), cv.getTrangThai());
         boolean add = rp.update(thuongHieu, id);
         if (add == true) {
             return "sửa thành công";
         } else {
             return " sửa thất bại ";
-        }
+        
         }
     }
 

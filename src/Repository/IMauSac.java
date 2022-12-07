@@ -22,4 +22,6 @@ public interface IMauSac {
     boolean delete(String id);
 
     boolean themNhanh(MauSac ms);
+    
+    MauSac getmaKc(String ma);
 }

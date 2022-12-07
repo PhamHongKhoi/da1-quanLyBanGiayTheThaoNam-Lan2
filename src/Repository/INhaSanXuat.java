@@ -4,6 +4,7 @@
  */
 package Repository;
 
+import DomainModel.KichCo;
 import DomainModel.NhaSanXuat;
 
 import java.util.List;
@@ -23,4 +24,6 @@ public interface INhaSanXuat {
     boolean update(NhaSanXuat cv, String id);
 
     boolean themNhanhNsx(NhaSanXuat nsx);
+    
+    NhaSanXuat getmaKc(String ma);
 }

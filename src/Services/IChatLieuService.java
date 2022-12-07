@@ -22,4 +22,6 @@ public interface IChatLieuService {
     String update(QuanLyChatLieu cv, String ma);
 
     String themNhanhChatLieu(QuanLyChatLieu qlCt);
+    
+    QuanLyChatLieu getmakc (String ma);
 }

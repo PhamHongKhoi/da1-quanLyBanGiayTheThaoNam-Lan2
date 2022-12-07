@@ -22,4 +22,6 @@ public interface IDongSanPhamService {
     String update(QuanLyDongSanPham cv, String id);
 
     String themNhanh(QuanLyDongSanPham qlDsp);
+
+    QuanLyDongSanPham getmakc(String ma);
 }

@@ -22,5 +22,7 @@ public interface IThuongHieu {
     boolean update(ThuongHieu cv, String id);
 
     boolean themNhanh(ThuongHieu th);
+    
+    ThuongHieu getmaKc(String ma);
 
 }

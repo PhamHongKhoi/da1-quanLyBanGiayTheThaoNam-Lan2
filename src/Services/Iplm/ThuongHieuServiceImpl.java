@@ -36,13 +36,19 @@ public class ThuongHieuServiceImpl implements IThuongHieuService {
 
     @Override
     public String add(QuanLyThuongHieu t) {
-
-        ThuongHieu thuongHieu = new ThuongHieu("", t.getMa(), t.getTen(), t.getTrangThai());
-        boolean add = rp.add(thuongHieu);
-        if (add == true) {
-            return "thêm thành công";
+        QuanLyThuongHieu qlKhachhang = new QuanLyThuongHieu();
+        qlKhachhang = new ThuongHieuServiceImpl().getmakc(t.getMa());
+        if (qlKhachhang != null) {
+            return "Mã trùng yêu cầu nhập lại";
         } else {
-            return " thêm thất bại ";
+
+            ThuongHieu thuongHieu = new ThuongHieu("", t.getMa(), t.getTen(), t.getTrangThai());
+            boolean add = rp.add(thuongHieu);
+            if (add == true) {
+                return "thêm thành công";
+            } else {
+                return " thêm thất bại ";
+            }
         }
     }
 
@@ -58,12 +64,14 @@ public class ThuongHieuServiceImpl implements IThuongHieuService {
 
     @Override
     public String update(QuanLyThuongHieu cv, String id) {
-        ThuongHieu thuongHieu = new ThuongHieu("", cv.getMa(), cv.getTen(), cv.getTrangThai());
-        boolean add = rp.update(thuongHieu, id);
-        if (add == true) {
-            return "Sửa thành công";
-        } else {
-            return " Sửa thất bại ";
+       
+            ThuongHieu thuongHieu = new ThuongHieu("", cv.getMa(), cv.getTen(), cv.getTrangThai());
+            boolean add = rp.update(thuongHieu, id);
+            if (add == true) {
+                return "Sửa thành công";
+            } else {
+                return " Sửa thất bại ";
+            
         }
     }
 
@@ -78,4 +86,19 @@ public class ThuongHieuServiceImpl implements IThuongHieuService {
         }
     }
 
+    @Override
+    public QuanLyThuongHieu getmakc(String ma) {
+        ThuongHieu cv = rp.getmaKc(ma);
+        if (cv != null) {
+            QuanLyThuongHieu ql = new QuanLyThuongHieu();
+            ql.setId(cv.getId());
+            ql.setMa(cv.getMa());
+            ql.setTen(cv.getTen());
+            ql.setTrangThai(cv.getTrangThai());
+
+            return ql;
+        } else {
+            return null;
+        }
+    }
 }

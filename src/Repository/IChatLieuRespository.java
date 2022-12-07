@@ -22,4 +22,6 @@ public interface IChatLieuRespository {
     boolean update(ChatLieu cv, String ma);
 
     boolean themNhanhChatLieu(ChatLieu cl);
+
+    ChatLieu getmaKc(String ma);
 }

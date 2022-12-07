@@ -35,23 +35,32 @@ public class MauSacServiceIplm implements IMauSacService {
 
     @Override
     public String add(QuanLyMauSac qlms) {
-        MauSac ms = new MauSac(null, qlms.getMa(), qlms.getTen(), qlms.getTrangThai());
-        boolean add = msr.add(ms);
-        if (add == true) {
-            return "Thêm thành công";
+        QuanLyMauSac qlKhachhang = new QuanLyMauSac();
+        qlKhachhang = new MauSacServiceIplm().getmakc(qlms.getMa());
+        if (qlKhachhang != null) {
+            return "Mã trùng yêu cầu nhập lại";
         } else {
-            return "Thêm thất bại";
+            MauSac ms = new MauSac(null, qlms.getMa(), qlms.getTen(), qlms.getTrangThai());
+            boolean add = msr.add(ms);
+            if (add == true) {
+                return "Thêm thành công";
+            } else {
+                return "Thêm thất bại";
+            }
         }
     }
 
     @Override
     public String update(QuanLyMauSac qlms, String id) {
-        MauSac ms = new MauSac(null, qlms.getMa(), qlms.getTen(), qlms.getTrangThai());
-        boolean update = msr.update(ms, id);
-        if (update == true) {
-            return "Sửa thành công";
-        } else {
-            return "Sửa thất bại";
+       
+
+            MauSac ms = new MauSac(null, qlms.getMa(), qlms.getTen(), qlms.getTrangThai());
+            boolean update = msr.update(ms, id);
+            if (update == true) {
+                return "Sửa thành công";
+            } else {
+                return "Sửa thất bại";
+            
         }
     }
 
@@ -73,6 +82,22 @@ public class MauSacServiceIplm implements IMauSacService {
             return "Thêm thành công";
         } else {
             return "Thêm thất bại";
+        }
+    }
+
+    @Override
+    public QuanLyMauSac getmakc(String ma) {
+        MauSac cv = msr.getmaKc(ma);
+        if (cv != null) {
+            QuanLyMauSac ql = new QuanLyMauSac();
+            ql.setId(cv.getId());
+            ql.setMa(cv.getMa());
+            ql.setTen(cv.getTen());
+            ql.setTrangThai(cv.getTrangThai());
+
+            return ql;
+        } else {
+            return null;
         }
     }
 

@@ -36,13 +36,19 @@ public class ChatLieuService implements IChatLieuService {
 
     @Override
     public String add(QuanLyChatLieu t) {
-
-        ChatLieu ChatLieu = new ChatLieu("", t.getMa(), t.getDaChinh(), t.getDaPhu(), t.getDeNgoai(), t.getLopLotTrong(), t.getTrangThai());
-        boolean add = rp.add(ChatLieu);
-        if (add == true) {
-            return "thêm thành công";
+        QuanLyChatLieu qlKhachhang = new QuanLyChatLieu();
+        qlKhachhang = new ChatLieuService().getmakc(t.getMa());
+        if (qlKhachhang != null) {
+            return "Mã trùng yêu cầu nhập lại";
         } else {
-            return " thêm thất bại ";
+
+            ChatLieu ChatLieu = new ChatLieu("", t.getMa(), t.getDaChinh(), t.getDaPhu(), t.getDeNgoai(), t.getLopLotTrong(), t.getTrangThai());
+            boolean add = rp.add(ChatLieu);
+            if (add == true) {
+                return "thêm thành công";
+            } else {
+                return " thêm thất bại ";
+            }
         }
     }
 
@@ -58,12 +64,14 @@ public class ChatLieuService implements IChatLieuService {
 
     @Override
     public String update(QuanLyChatLieu cv, String ma) {
-        ChatLieu ChatLieu = new ChatLieu("", cv.getMa(), cv.getDaChinh(), cv.getDaPhu(), cv.getDeNgoai(), cv.getLopLotTrong(), cv.getTrangThai());
-        boolean add = rp.update(ChatLieu, ma);
-        if (add == true) {
-            return "Sửa thành công";
-        } else {
-            return " Sửa thất bại ";
+       
+            ChatLieu ChatLieu = new ChatLieu("", cv.getMa(), cv.getDaChinh(), cv.getDaPhu(), cv.getDeNgoai(), cv.getLopLotTrong(), cv.getTrangThai());
+            boolean add = rp.update(ChatLieu, ma);
+            if (add == true) {
+                return "Sửa thành công";
+            } else {
+                return " Sửa thất bại ";
+            
         }
     }
 
@@ -75,6 +83,25 @@ public class ChatLieuService implements IChatLieuService {
             return "Thêm thành công";
         } else {
             return "Thêm thất bại";
+        }
+    }
+
+    @Override
+    public QuanLyChatLieu getmakc(String ma) {
+        ChatLieu cv = rp.getmaKc(ma);
+        if (cv != null) {
+            QuanLyChatLieu ql = new QuanLyChatLieu();
+            ql.setId(cv.getId());
+            ql.setMa(cv.getMa());
+            ql.setDaChinh(cv.getDaChinh());
+            ql.setDaPhu(cv.getDaPhu());
+            ql.setDeNgoai(cv.getDeNgoai());
+            ql.setLopLotTrong(cv.getLopLotTrong());
+            ql.setTrangThai(cv.getTrangThai());
+
+            return ql;
+        } else {
+            return null;
         }
     }
 

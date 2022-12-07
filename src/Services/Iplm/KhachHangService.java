@@ -52,18 +52,14 @@ public class KhachHangService implements IKhachHangService {
 
     @Override
     public String update(QuanLyKhachHang qlkh, String id) {
-        QuanLyKhachHang qlKhachhang = new QuanLyKhachHang();
-        qlKhachhang = new KhachHangService().getMaKh(qlkh.getMa());
-        if (qlKhachhang != null) {
-            return "Mã trùng yêu cầu nhập lại";
-        } else {
+       
             KhachHang kh = new KhachHang(null, qlkh.getMa(), qlkh.getTen(), qlkh.getGioiTinh(), qlkh.getNgaySinh(), qlkh.getSoDienThoai(), qlkh.getDiaChi(), qlkh.getTrangThai());
             boolean update = khr.update(kh, id);
             if (update = true) {
                 return "Sửa thành công";
             } else {
                 return "Sửa thất bại";
-            }
+            
         }
     }
 

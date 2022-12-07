@@ -33,11 +33,7 @@ public class NhanVienService implements INhanVienService {
     @Override
     public String add(QuanLyNhanVien qlnv) {
 
-        QuanLyNhanVien qlKhachhang = new QuanLyNhanVien();
-        qlKhachhang = new NhanVienService().getManv(qlnv.getMa());
-        if (qlKhachhang != null) {
-            return "Mã trùng yêu cầu nhập lại";
-        } else {
+       
             NhanVien nv = new NhanVien(null, qlnv.getMa(), qlnv.getTen(), qlnv.getGioiTinh(), qlnv.getNgaySinh(), qlnv.getDiaChi(), qlnv.getSoDienThoai(), qlnv.getChucVu(), qlnv.getTrangThai(), qlnv.getTenTaiKhoan(), qlnv.getMatKhau(), qlnv.getHinhAnh());
             boolean add = nvr.add(nv);
             if (add == true) {
@@ -45,7 +41,7 @@ public class NhanVienService implements INhanVienService {
             } else {
                 return "Thêm thất bại";
             }
-        }
+        
     }
 
     @Override

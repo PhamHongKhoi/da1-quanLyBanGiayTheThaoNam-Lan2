@@ -22,4 +22,5 @@ public interface IMauSacService {
     String delete(String id);
 
     String themNhanh(QuanLyMauSac qlMs);
+    QuanLyMauSac getmakc (String ma);
 }

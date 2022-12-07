@@ -22,4 +22,6 @@ public interface IDongSanPham {
     boolean update(DongSanPham cv, String id);
 
     boolean themNhanh(DongSanPham dsp);
+
+    DongSanPham getmaKc(String ma);
 }

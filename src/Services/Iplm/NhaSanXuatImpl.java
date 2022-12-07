@@ -34,12 +34,18 @@ public class NhaSanXuatImpl implements INhaSanXuatService {
 
     @Override
     public String add(QuanLyNhaSanXuat t) {
-        NhaSanXuat mauSac = new NhaSanXuat("", t.getMa(), t.getTen(), t.getTrangThai());
-        boolean add = rp.add(mauSac);
-        if (add == true) {
-            return "thêm thành công";
+        QuanLyNhaSanXuat qlKhachhang = new QuanLyNhaSanXuat();
+        qlKhachhang = new NhaSanXuatImpl().getmakc(t.getMa());
+        if (qlKhachhang != null) {
+            return "Mã trùng yêu cầu nhập lại";
         } else {
-            return " thêm thất bại ";
+            NhaSanXuat mauSac = new NhaSanXuat("", t.getMa(), t.getTen(), t.getTrangThai());
+            boolean add = rp.add(mauSac);
+            if (add == true) {
+                return "thêm thành công";
+            } else {
+                return " thêm thất bại ";
+            }
         }
     }
 
@@ -55,12 +61,14 @@ public class NhaSanXuatImpl implements INhaSanXuatService {
 
     @Override
     public String update(QuanLyNhaSanXuat cv, String id) {
-        NhaSanXuat sanPham = new NhaSanXuat("", cv.getMa(), cv.getTen(), cv.getTrangThai());
-        boolean add = rp.update(sanPham, id);
-        if (add == true) {
-            return "sửa thành công";
-        } else {
-            return " sửa thất bại ";
+       
+            NhaSanXuat sanPham = new NhaSanXuat("", cv.getMa(), cv.getTen(), cv.getTrangThai());
+            boolean add = rp.update(sanPham, id);
+            if (add == true) {
+                return "sửa thành công";
+            } else {
+                return " sửa thất bại ";
+            
         }
     }
 
@@ -72,6 +80,22 @@ public class NhaSanXuatImpl implements INhaSanXuatService {
             return "Thêm thành công ";
         } else {
             return "Thêm thất bại";
+        }
+    }
+
+    @Override
+    public QuanLyNhaSanXuat getmakc(String ma) {
+        NhaSanXuat cv = rp.getmaKc(ma);
+        if (cv != null) {
+            QuanLyNhaSanXuat ql = new QuanLyNhaSanXuat();
+            ql.setId(cv.getId());
+            ql.setMa(cv.getMa());
+            ql.setTen(cv.getTen());
+            ql.setTrangThai(cv.getTrangThai());
+
+            return ql;
+        } else {
+            return null;
         }
     }
 
