@@ -36,13 +36,18 @@ public class KichCoServiceImpl implements IKichCoService {
 
     @Override
     public String add(QuanLyKichco t) {
-
-        KichCo kichCo = new KichCo("", t.getMa(), t.getTen(), t.getTrangThai());
-        boolean add = rp.add(kichCo);
-        if (add == true) {
-            return "thêm thành công";
+        QuanLyKichco qlKhachhang = new QuanLyKichco();
+        qlKhachhang = new KichCoServiceImpl().getmakc(t.getMa());
+        if (qlKhachhang != null) {
+            return "Mã trùng yêu cầu nhập lại";
         } else {
-            return " thêm thất bại ";
+            KichCo kichCo = new KichCo("", t.getMa(), t.getTen(), t.getTrangThai());
+            boolean add = rp.add(kichCo);
+            if (add == true) {
+                return "thêm thành công";
+            } else {
+                return " thêm thất bại ";
+            }
         }
     }
 
@@ -58,12 +63,18 @@ public class KichCoServiceImpl implements IKichCoService {
 
     @Override
     public String update(QuanLyKichco cv, String id) {
-        KichCo kichCo = new KichCo("", cv.getMa(), cv.getTen(), cv.getTrangThai());
-        boolean add = rp.update(kichCo, id);
-        if (add == true) {
-            return "Sửa thành công";
+        QuanLyKichco qlKhachhang = new QuanLyKichco();
+        qlKhachhang = new KichCoServiceImpl().getmakc(cv.getMa());
+        if (qlKhachhang != null) {
+            return "Mã trùng yêu cầu nhập lại";
         } else {
-            return " Sửa thất bại ";
+            KichCo kichCo = new KichCo("", cv.getMa(), cv.getTen(), cv.getTrangThai());
+            boolean add = rp.update(kichCo, id);
+            if (add == true) {
+                return "Sửa thành công";
+            } else {
+                return " Sửa thất bại ";
+            }
         }
     }
 
@@ -75,6 +86,22 @@ public class KichCoServiceImpl implements IKichCoService {
             return "Thêm thành công";
         } else {
             return "Thêm thất bại";
+        }
+    }
+
+    @Override
+    public QuanLyKichco getmakc(String ma) {
+        KichCo cv = rp.getmaKc(ma);
+        if (cv != null) {
+            QuanLyKichco ql = new QuanLyKichco();
+            ql.setId(cv.getId());
+            ql.setMa(cv.getMa());
+            ql.setTen(cv.getTen());
+            ql.setTrangThai(cv.getTrangThai());
+
+            return ql;
+        } else {
+            return null;
         }
     }
 

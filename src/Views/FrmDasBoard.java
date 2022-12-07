@@ -2713,7 +2713,7 @@ public class FrmDasBoard extends javax.swing.JFrame {
                                 .addComponent(cbbCtspChatLieu, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(btThemNhanhChatLieu, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 193, Short.MAX_VALUE)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -2822,7 +2822,7 @@ public class FrmDasBoard extends javax.swing.JFrame {
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(55, 55, 55)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 1382, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -5491,46 +5491,77 @@ public class FrmDasBoard extends javax.swing.JFrame {
     private void btThemThuocTinhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btThemThuocTinhActionPerformed
         if (rdbtDongSanPham.isSelected() == true) {
             QuanLyDongSanPham ql = getDongSanPham();
-            String addDongSp = dspi.add(ql);
-            JOptionPane.showMessageDialog(this, addDongSp);
-            lstDongSanPham = dspi.getAll();
-            showtableDongSanPham(lstDongSanPham);
+            if (txtMaThuocTinh.getText().isEmpty() || txtTenThuocTinh.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "không được để trống !");
+            } else {
+                String addDongSp = dspi.add(ql);
+                JOptionPane.showMessageDialog(this, addDongSp);
+                lstDongSanPham = dspi.getAll();
+                showtableDongSanPham(lstDongSanPham);
+            }
+
         } else if (rdbtKichCo.isSelected() == true) {
+
             QuanLyKichco qlKichCo = getKichCo();
-            String addKichCo = kcsi.add(qlKichCo);
-            JOptionPane.showMessageDialog(this, addKichCo);
-            lstKichCo = kcsi.getAll();
-            showtableKichCo(lstKichCo);
+            if (txtMaThuocTinh.getText().isEmpty() || txtTenThuocTinh.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "không được để trống !");
+            } else {
+
+                String addKichCo = kcsi.add(qlKichCo);
+                JOptionPane.showMessageDialog(this, addKichCo);
+                lstKichCo = kcsi.getAll();
+                showtableKichCo(lstKichCo);
+            }
         } else if (rdbtKieuDang.isSelected() == true) {
             QuanLyKieuDang qlKieuDang = getKieuDang();
-            String addKieuDang = kdi.add(qlKieuDang);
-            JOptionPane.showMessageDialog(this, addKieuDang);
-            lstKieuDang = kdi.getAll();
-            showtableKieuDang(lstKieuDang);
+            if (txtMaThuocTinh.getText().isEmpty() || txtTenThuocTinh.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "không được để trống !");
+            } else {
+                String addKieuDang = kdi.add(qlKieuDang);
+                JOptionPane.showMessageDialog(this, addKieuDang);
+                lstKieuDang = kdi.getAll();
+                showtableKieuDang(lstKieuDang);
+            }
         } else if (rdbtThuongHieu.isSelected() == true) {
             QuanLyThuongHieu qlThuongHieu = getThuongHieu();
-            String addThuongHieu = thsi.add(qlThuongHieu);
-            JOptionPane.showMessageDialog(this, addThuongHieu);
-            lstThuongHieu = thsi.getAll();
-            showtableThuongHieu(lstThuongHieu);
+            if (txtMaThuocTinh.getText().isEmpty() || txtTenThuocTinh.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "không được để trống !");
+            } else {
+                String addThuongHieu = thsi.add(qlThuongHieu);
+                JOptionPane.showMessageDialog(this, addThuongHieu);
+                lstThuongHieu = thsi.getAll();
+                showtableThuongHieu(lstThuongHieu);
+            }
         } else if (rdbtNhaSanXuat.isSelected() == true) {
             QuanLyNhaSanXuat qlNhaSanXuat = getNhaSanXuat();
-            String addNhaSanXuat = nsxi.add(qlNhaSanXuat);
-            JOptionPane.showMessageDialog(this, addNhaSanXuat);
-            lstNhaSanXuat = nsxi.getAll();
-            showTableNhaSanXuat(lstNhaSanXuat);
+            if (txtMaThuocTinh.getText().isEmpty() || txtTenThuocTinh.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "không được để trống !");
+            } else {
+                String addNhaSanXuat = nsxi.add(qlNhaSanXuat);
+                JOptionPane.showMessageDialog(this, addNhaSanXuat);
+                lstNhaSanXuat = nsxi.getAll();
+                showTableNhaSanXuat(lstNhaSanXuat);
+            }
         } else if (rdbtMauSac.isSelected() == true) {
             QuanLyMauSac qlMauSac = getMauSac();
-            String addMauSac = msi.add(qlMauSac);
-            JOptionPane.showMessageDialog(this, addMauSac);
-            lstMauSac = msi.getAll();
-            showTableMauSac(lstMauSac);
+            if (txtMaThuocTinh.getText().isEmpty() || txtTenThuocTinh.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "không được để trống !");
+            } else {
+                String addMauSac = msi.add(qlMauSac);
+                JOptionPane.showMessageDialog(this, addMauSac);
+                lstMauSac = msi.getAll();
+                showTableMauSac(lstMauSac);
+            }
         } else if (rdbtChatLieu.isSelected() == true) {
             QuanLyChatLieu qlChatLieu = getChatLieu();
-            String addChatLieu = cls.add(qlChatLieu);
-            JOptionPane.showMessageDialog(this, addChatLieu);
-            lstChatLieu = cls.getAll();
-            showTableChatLieu(lstChatLieu);
+            if (txtMaThuocTinh.getText().isEmpty() || txtTenThuocTinh.getText().isEmpty() || txtDaChinh.getText().isEmpty() || txtDaPhu.getText().isEmpty() || txtLopLotTrong.getText().isEmpty() || txtDeNgoai.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "không được để trống !");
+            } else {
+                String addChatLieu = cls.add(qlChatLieu);
+                JOptionPane.showMessageDialog(this, addChatLieu);
+                lstChatLieu = cls.getAll();
+                showTableChatLieu(lstChatLieu);
+            }
         }
     }//GEN-LAST:event_btThemThuocTinhActionPerformed
     private void fillDongSp(int row) {
@@ -6072,10 +6103,15 @@ public class FrmDasBoard extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         QuanLyChiTietSanPham qlChiTietSp = getQlChiTietSp();
-        String add = ctspI.add(qlChiTietSp);
-        JOptionPane.showMessageDialog(this, add);
-        lstCtSp = ctspI.getAll();
-        showTableChiTietSp(lstCtSp);
+        if (txtCtspGiaBan.getText().isEmpty() || txtCtspGiaNhap.getText().isEmpty() || txtCtspNamBh.getText().isEmpty() || txtCtspSoLuongTon.getText().isEmpty() || jtpCtspMoTa.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "không được để trống !");
+        } else {
+            String add = ctspI.add(qlChiTietSp);
+            JOptionPane.showMessageDialog(this, add);
+            lstCtSp = ctspI.getAll();
+            showTableChiTietSp(lstCtSp);
+        }
+
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jlbCtspHinhAnhMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbCtspHinhAnhMouseClicked

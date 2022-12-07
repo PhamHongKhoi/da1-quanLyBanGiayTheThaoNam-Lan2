@@ -61,4 +61,10 @@ public class KichCo {
         this.trangThai = trangThai;
     }
 
+    @Override
+    public String toString() {
+        return "KichCo{" + "id=" + id + ", ma=" + ma + ", ten=" + ten + ", trangThai=" + trangThai + '}';
+    }
+    
+
 }

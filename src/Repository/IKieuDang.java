@@ -22,4 +22,5 @@ public interface IKieuDang {
     boolean update(KieuDang cv, String id);
 
     boolean themNhanhKd(KieuDang kd);
+    KieuDang getmaKc(String ma);
 }

@@ -111,4 +111,29 @@ public class KichCorepository implements IKichCo {
         return check > 0;
     }
 
+    @Override
+    public KichCo getmaKc(String ma) {
+        String query = "SELECT [Id]\n"
+                + "      ,[Ma]\n"
+                + "      ,[Ten]\n"
+                + "      ,[TrangThai]\n"
+                + "  FROM [dbo].[KichCo] where Ma = ? ";
+        try ( Connection con = SQLServerConnection.getConnection();  PreparedStatement ps = con.prepareCall(query)) {
+            ps.setObject(1, ma);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                KichCo qlCt = new KichCo(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4));
+                return qlCt;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+        return null;
+    }
+    public static void main(String[] args) {
+        KichCo kc = new KichCorepository().getmaKc("01");
+        System.out.println(""+kc.toString());
+    }
+
 }

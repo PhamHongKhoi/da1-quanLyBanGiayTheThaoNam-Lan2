@@ -22,4 +22,6 @@ public interface IKichCoService {
     String update(QuanLyKichco cv, String id);
 
     String themNhanh(QuanLyKichco kc);
+    
+    QuanLyKichco getmakc (String ma);
 }

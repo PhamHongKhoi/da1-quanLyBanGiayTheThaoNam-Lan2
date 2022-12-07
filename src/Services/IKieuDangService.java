@@ -22,4 +22,6 @@ public interface IKieuDangService {
     String update(QuanLyKieuDang cv, String id);
 
     String themNhanhKd(QuanLyKieuDang kd);
+    
+    QuanLyKieuDang getmakc (String ma);
 }

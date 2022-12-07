@@ -22,4 +22,6 @@ public interface IKichCo {
     boolean update(KichCo cv, String id);
 
     boolean themNhanh(KichCo kc);
+    
+    KichCo getmaKc(String ma);
 }
