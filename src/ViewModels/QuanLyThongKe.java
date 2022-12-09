@@ -74,8 +74,8 @@ public class QuanLyThongKe {
         this.ngayTao = ngayTao;
     }
 
-    public double tongTien() {
-        return Integer.valueOf(soLuong) * Integer.valueOf((int) donGia);
+    public int tongTien() {
+        return Integer.valueOf((int) soLuong) * Integer.valueOf((int) donGia);
     }
 
     public int getTrangThai() {
@@ -95,7 +95,7 @@ public class QuanLyThongKe {
     }
 
     public Object[] arriveThongke() {
-        return new Object[]{ten, soLuong, donGia, ngayTao, tongTien};
+        return new Object[]{ten, soLuong, donGia, ngayTao, tongTien()};
     }
 
     public Object[] arriveHangHoaHuy() {
