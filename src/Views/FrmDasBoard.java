@@ -265,6 +265,7 @@ public class FrmDasBoard extends javax.swing.JFrame {
 
         TBHoaDon.removeColumn(TBHoaDon.getColumnModel().getColumn(1));
         TBGioHang.removeColumn(TBGioHang.getColumnModel().getColumn(1));
+        TBSanPham.removeColumn(TBSanPham.getColumnModel().getColumn(8));
         TBSanPham.removeColumn(TBSanPham.getColumnModel().getColumn(1));
         btnRefresh.doClick();
 
@@ -278,6 +279,8 @@ public class FrmDasBoard extends javax.swing.JFrame {
         btnThanhToan1.setEnabled(false);
 
         showChoThanhToan();
+        TBGioHang.setDefaultEditor(Object.class, null);
+        TBSanPham.setDefaultEditor(Object.class, null);
 
         //ls hd
         listHD = hoaDonService.getAll();
@@ -1850,7 +1853,7 @@ public class FrmDasBoard extends javax.swing.JFrame {
         tab.addTab("Hoa Don", palHD);
 
         btnThanhToan1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnThanhToan1.setText("Thanh Toán");
+        btnThanhToan1.setText("Đã Nhận Hàng");
         btnThanhToan1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnThanhToan1ActionPerformed(evt);
@@ -2794,6 +2797,7 @@ public class FrmDasBoard extends javax.swing.JFrame {
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btThemNhanhSanPham, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btThemNhanhNhaSanXuat)
                             .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel24)
                                 .addComponent(jLabel25)
@@ -2801,8 +2805,7 @@ public class FrmDasBoard extends javax.swing.JFrame {
                                 .addComponent(cbbCtspThuongHieu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel38)
                                 .addComponent(cbbCtspNhaSanXuat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btThemNhanhThuongHieu)
-                                .addComponent(btThemNhanhNhaSanXuat)))
+                                .addComponent(btThemNhanhThuongHieu)))
                         .addGap(31, 31, 31)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel6Layout.createSequentialGroup()
@@ -6590,9 +6593,9 @@ public class FrmDasBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_TBHoaDonMouseClicked
 
     private void TBGioHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TBGioHangMouseClicked
-        //        int rowGH = TBGioHang.getSelectedRow();
-        //        String idsp = TBGioHang.getModel().getValueAt(rowGH, 1).toString();
-        //        System.out.println(idSelected);
+//        int rowGH = TBGioHang.getSelectedRow();
+//        String idsp = TBGioHang.getModel().getValueAt(rowGH, 1).toString();
+//        System.out.println(idSelected);
         TBGioHang.addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent mouseEvent) {
                 JTable table = (JTable) mouseEvent.getSource();
@@ -6610,11 +6613,11 @@ public class FrmDasBoard extends javax.swing.JFrame {
                     String masp = TBGioHang.getModel().getValueAt(row, 2).toString();
                     String tensp = TBGioHang.getModel().getValueAt(row, 3).toString();
                     int soLuongBD = Integer.valueOf(TBGioHang.getModel().getValueAt(row, 4).toString());
-                    //                    String idSPSelected = TBGioHang.getModel().getValueAt(row, 1).toString();
-                    //                    String idHDS = TBHoaDon.getModel().getValueAt(row, 1).toString();
+//                    String idSPSelected = TBGioHang.getModel().getValueAt(row, 1).toString();
+//                    String idHDS = TBHoaDon.getModel().getValueAt(row, 1).toString();
 
                     String inputXoa = JOptionPane.showInputDialog("Mời bạn nhập số lượng " + masp + " - " + tensp + " :");
-                    if (inputXoa == null) {
+                    if (inputXoa == null || inputXoa.equals("0") || inputXoa.matches("[a-zA-Z]")) {
                         JOptionPane.showMessageDialog(rootPane, "Ko co thay doi");
 
                     } else {
@@ -6627,31 +6630,35 @@ public class FrmDasBoard extends javax.swing.JFrame {
                             txtSoLuongTon.setText(String.valueOf(soLuongTon));
                         }
                         int soLuongSauKhiThayDoi = soLuongBD + Integer.valueOf(txtSoLuongTon.getText());
-                        DanhSachSanPhamResponse dsspr = new DanhSachSanPhamResponse(soLuongSauKhiThayDoi);
-                        JOptionPane.showMessageDialog(rootPane, danhSAchSanPhamService.updateSoLuongSP(dsspr, idSPSelected));
-                        listDssp = danhSAchSanPhamService.getAll();
-                        showDataTableDSSP(listDssp);
-                        showTongTien();
-
                         int soLuongSauUpdate = Integer.valueOf(inputXoa);
-                        System.out.println(soLuongSauUpdate);
-                        ChiTietHoaDon chiTietHoaDonTDSL = new ChiTietHoaDon(soLuongSauUpdate);
-                        chiTietHoaDonService.updateSoLuongHoaDonCT(chiTietHoaDonTDSL, idHDS, idSPSelected);
-                        listCTHD = chiTietHoaDonService.getDataByID(idHDS);
-                        showDataTableCTHD(listCTHD);
-
-                        listDssp = danhSAchSanPhamService.getAll();
-                        showDataTableDSSP(listDssp);
-                        showTongTien();
-
                         int soLuongSauKhiThayDoiL2 = soLuongSauKhiThayDoi - soLuongSauUpdate;
-                        DanhSachSanPhamResponse dssprl2 = new DanhSachSanPhamResponse(soLuongSauKhiThayDoiL2);
-                        JOptionPane.showMessageDialog(rootPane, danhSAchSanPhamService.updateSoLuongSP(dssprl2, idSPSelected));
-                        listDssp = danhSAchSanPhamService.getAll();
-                        showDataTableDSSP(listDssp);
-                    }
+                        if (soLuongSauKhiThayDoiL2 < 0) {
+                            JOptionPane.showMessageDialog(rootPane, "Số lượng tồn không đủ");
+                        } else {
 
-                } else {
+                            DanhSachSanPhamResponse dsspr = new DanhSachSanPhamResponse(soLuongSauKhiThayDoi);
+                            JOptionPane.showMessageDialog(rootPane, danhSAchSanPhamService.updateSoLuongSP(dsspr, idSPSelected));
+                            listDssp = danhSAchSanPhamService.getAll();
+                            showDataTableDSSP(listDssp);
+                            showTongTien();
+
+                            System.out.println(soLuongSauUpdate);
+                            ChiTietHoaDon chiTietHoaDonTDSL = new ChiTietHoaDon(soLuongSauUpdate);
+                            chiTietHoaDonService.updateSoLuongHoaDonCT(chiTietHoaDonTDSL, idHDS, idSPSelected);
+                            listCTHD = chiTietHoaDonService.getDataByID(idHDS);
+                            showDataTableCTHD(listCTHD);
+
+                            listDssp = danhSAchSanPhamService.getAll();
+                            showDataTableDSSP(listDssp);
+                            showTongTien();
+
+                            DanhSachSanPhamResponse dssprl2 = new DanhSachSanPhamResponse(soLuongSauKhiThayDoiL2);
+                            JOptionPane.showMessageDialog(rootPane, danhSAchSanPhamService.updateSoLuongSP(dssprl2, idSPSelected));
+                            listDssp = danhSAchSanPhamService.getAll();
+                            showDataTableDSSP(listDssp);
+                        }
+
+                    }
 
                 }
 
@@ -6669,7 +6676,7 @@ public class FrmDasBoard extends javax.swing.JFrame {
             String idHD = (String) TBHoaDon.getModel().getValueAt(rowHD, 1);
             String idCTSP = (String) TBGioHang.getModel().getValueAt(rowGH, 1);
             capNhapSoLuongTonKho();
-            JOptionPane.showMessageDialog(this, chiTietHoaDonService.delete(idHD, idCTSP));
+            chiTietHoaDonService.delete(idHD, idCTSP);
             listCTHD = chiTietHoaDonService.getDataByID(idHD);
             showDataTableCTHD(listCTHD);
             showTongTien();
@@ -6927,7 +6934,7 @@ public class FrmDasBoard extends javax.swing.JFrame {
                 String sdt = txtSDT.getText();
                 String diaChi = txtDiaChi.getText();
                 HoaDon hoaDonTTKH = new HoaDon(tenkh, diaChi, sdt);
-                JOptionPane.showMessageDialog(this, hoaDonService.updateTTKH(hoaDonTTKH, idSelected));
+                hoaDonService.updateTTKH(hoaDonTTKH, idSelected);
                 //Tien thua
                 int tienKhachDua = Integer.valueOf(txtTienKhachDua.getText());
                 int tienChuyenKhoan = Integer.valueOf(txtTienChuyenKhoan.getText());
@@ -6939,48 +6946,55 @@ public class FrmDasBoard extends javax.swing.JFrame {
                 if (tongTienKhachDua < sum) {
                     JOptionPane.showMessageDialog(this, "Số tiền khách trả không đủ");
                     return;
+                } else {
+                    int tienThua = tongTienKhachDua - sum;
+                    Locale locale = new Locale("vi", "VN");
+                    NumberFormat format = NumberFormat.getCurrencyInstance(locale);
+                    jTienThua.setText(format.format(tienThua));
+
+                    //cap nhat trang thai 
+                    String maSelected = TBHoaDon.getModel().getValueAt(rowHD, 2).toString();
+                    int trangThai = 1;
+                    HoaDon hoaDon = new HoaDon(trangThai);
+                    TBHoaDon.clearSelection();
+                    hoaDonService.updateThanhToan(hoaDon, maSelected);
+                    listHD = hoaDonService.getAll();
+                    showDataTableHD(listHD);
+
+                    HoaDon hoaDonNgayThanhToan = new HoaDon();
+                    hoaDonNgayThanhToan.setNgayThanhToan(new Date());
+                    System.out.println(idSelected);
+                    hoaDonService.updateNgayThanhToan(hoaDonNgayThanhToan, idSelected);
+
+                    showChoThanhToan();
+                    showDataTableCTHD(listCTHD);
+
+                    // them loại hình thanh toán
+                    String tenLHTT = String.valueOf(cbbPTTT.getSelectedItem());
+                    float tienMat = Float.valueOf(txtTienKhachDua.getText());
+                    float tienChuyen = Float.valueOf(txtTienChuyenKhoan.getText());
+                    LoaiHinhTanhToan lhtt = new LoaiHinhTanhToan(idSelected, tenLHTT, tienMat, tienChuyen);
+                    loaiHinhThanhToanService.saveLoaiHinhTT(lhtt);
+
+                    if (!txtTenKH.getText().isEmpty()) {
+                        String tenKh = txtTenKH.getText();
+                        String sdtKh = txtSDT.getText();
+                        String diaChiKh = txtTenKH.getText();
+                        if (sdtKh.isEmpty() || !(sdtKh.matches("^(0|\\\\+84)(\\\\s|\\\\.)?((3[2-9])|(5[689])|(7[06-9])|(8[1-689])|(9[0-46-9]))(\\\\d)(\\\\s|\\\\.)?(\\\\d{3})(\\\\s|\\\\.)?(\\\\d{3})$")) || diaChiKh.isEmpty()) {
+                            JOptionPane.showMessageDialog(rootPane, "Bạn nhập sai định dạng. khách hàng ko đc thêm");
+                        } else {
+                            KhachHangResponse khachHangResponse = new KhachHangResponse(tenKh, sdtKh, diaChiKh);
+                            khachHangRService.saveKhachHang(khachHangResponse);
+                        }
+
+                    }
+
+                    txtDiaChi.setEnabled(false);
+                    txtTenKH.setEnabled(false);
+                    txtSDT.setEnabled(false);
+                    btnThanhToan.setEnabled(false);
+                    btnHuyHoaDon.setEnabled(false);
                 }
-                int tienThua = tongTienKhachDua - sum;
-                Locale locale = new Locale("vi", "VN");
-                NumberFormat format = NumberFormat.getCurrencyInstance(locale);
-                jTienThua.setText(format.format(tienThua));
-
-                //cap nhat trang thai
-                String maSelected = TBHoaDon.getModel().getValueAt(rowHD, 2).toString();
-                int trangThai = 1;
-                HoaDon hoaDon = new HoaDon(trangThai);
-                TBHoaDon.clearSelection();
-                JOptionPane.showMessageDialog(this, hoaDonService.updateThanhToan(hoaDon, maSelected));
-                listHD = hoaDonService.getAll();
-                showDataTableHD(listHD);
-
-                HoaDon hoaDonNgayThanhToan = new HoaDon();
-                hoaDonNgayThanhToan.setNgayThanhToan(new Date());
-                System.out.println(idSelected);
-                JOptionPane.showMessageDialog(this, hoaDonService.updateNgayThanhToan(hoaDonNgayThanhToan, idSelected));
-
-                showChoThanhToan();
-                showDataTableCTHD(listCTHD);
-
-                String tenLHTT = String.valueOf(cbbPTTT.getSelectedItem());
-                float tienMat = Float.valueOf(txtTienKhachDua.getText());
-                float tienChuyen = Float.valueOf(txtTienChuyenKhoan.getText());
-                LoaiHinhTanhToan lhtt = new LoaiHinhTanhToan(idSelected, tenLHTT, tienMat, tienChuyen);
-                JOptionPane.showMessageDialog(this, loaiHinhThanhToanService.saveLoaiHinhTT(lhtt));
-
-                if (!txtTenKH.getText().isEmpty()) {
-                    String tenKh = txtTenKH.getText();
-                    String sdtKh = txtSDT.getText();
-                    String diaChiKh = txtTenKH.getText();
-                    KhachHangResponse khachHangResponse = new KhachHangResponse(tenKh, sdtKh, diaChiKh);
-                    khachHangRService.saveKhachHang(khachHangResponse);
-                }
-
-                txtDiaChi.setEnabled(false);
-                txtTenKH.setEnabled(false);
-                txtSDT.setEnabled(false);
-                btnThanhToan.setEnabled(false);
-                btnHuyHoaDon.setEnabled(false);
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -7041,6 +7055,9 @@ public class FrmDasBoard extends javax.swing.JFrame {
                 HoaDon hoaDonTTKHGH = new HoaDon(tienShip, tenkh, diaChi, sdt);
                 JOptionPane.showMessageDialog(this, hoaDonService.updateTTKHGiaoHang(hoaDonTTKHGH, idSelected));
 
+                KhachHangResponse khachHangResponse = new KhachHangResponse(tenkh, sdt, diaChi);
+                khachHangRService.saveKhachHang(khachHangResponse);
+
                 //Tien thua
                 int tienKhachDua = Integer.valueOf(txtTienKhachDuaGiaoHang.getText());
                 int sum = 0;
@@ -7060,7 +7077,7 @@ public class FrmDasBoard extends javax.swing.JFrame {
                 NumberFormat format = NumberFormat.getCurrencyInstance(locale);
                 jTienThuaGiaoHang.setText(format.format(tienThua));
 
-                //cap nhat trang thai
+                //cap nhat trang thai 
                 String maSelected = TBHoaDon.getModel().getValueAt(rowHD, 2).toString();
                 int trangThai = 1;
                 HoaDon hoaDon = new HoaDon(trangThai);
@@ -7138,55 +7155,80 @@ public class FrmDasBoard extends javax.swing.JFrame {
                 return;
             } else {
                 JOptionPane.showMessageDialog(this, hoaDonService.updateNgayShip(hoaDonShip, idSelected));
-                KhachHangResponse khachHangResponse = new KhachHangResponse(tenkh, sdt, diaChi);
-                khachHangRService.saveKhachHang(khachHangResponse);
+//                KhachHangResponse khachHangResponse = new KhachHangResponse(tenkh, sdt, diaChi);
+//                khachHangRService.saveKhachHang(khachHangResponse);
                 btnThanhToan1.setEnabled(true);
-                showTongTien();
+
+                // Tính tông tiền
+                int sum = 0;
+                int tienShiptt = Integer.valueOf(txtTienShip.getText());
+                if (txtTienShip.getText().isEmpty()) {
+                    tienShiptt = 0;
+                }
+                for (int i = 0; i < TBGioHang.getRowCount(); i++) {
+                    sum = sum + Integer.parseInt(TBGioHang.getModel().getValueAt(i, 6).toString());
+                }
+                System.out.println(sum);
+                Locale locale = new Locale("vi", "VN");
+                NumberFormat format = NumberFormat.getCurrencyInstance(locale);
+                jTongTien.setText(format.format(sum));
+                jTongTienGiaoHang.setText(format.format(sum + tienShiptt));
+
                 txtDiaChiGiaoHang.setEnabled(false);
                 txtTenKHGiaoHang.setEnabled(false);
                 txtSDTGiaoHang.setEnabled(false);
                 txtTienShip.setEnabled(false);
                 btnApDungTienShip.setEnabled(false);
                 jdcNgayHenKhach.setEnabled(false);
+
+                txtTienKhachDuaGiaoHang.setText(String.valueOf(sum + tienShiptt));
             }
         } else if (guiHang == JOptionPane.NO_OPTION) {
             JOptionPane.showMessageDialog(this, "Bạn đã hủy gửi hàng");
         }
-
     }//GEN-LAST:event_btnGuiHangActionPerformed
 
     private void btnNgayHenKhachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNgayHenKhachActionPerformed
         int henKhach = JOptionPane.showConfirmDialog(this, "Bạn có muốn đặt ngày hẹn khách ?", "thêm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
         if (henKhach == JOptionPane.YES_OPTION) {
+            System.out.println("Ngay hen khachh");
             int rowHD = TBHoaDon.getSelectedRow();
             String idSelected = TBHoaDon.getModel().getValueAt(rowHD, 1).toString();
             Date ngayHenKhach = jdcNgayHenKhach.getDate();
 
-            HoaDon hoaDonHenKH = new HoaDon(ngayHenKhach);
-            JOptionPane.showMessageDialog(this, hoaDonService.updateNgayHenGiaoHang(hoaDonHenKH, idSelected));
-            //        btnGuiHang.setEnabled(true);
-
-            //        int rowHD = TBHoaDon.getSelectedRow();
-            //        String idSelected = TBHoaDon.getModel().getValueAt(rowHD, 1).toString();
+//        btnGuiHang.setEnabled(true);
+//        int rowHD = TBHoaDon.getSelectedRow();
+//        String idSelected = TBHoaDon.getModel().getValueAt(rowHD, 1).toString();
             String tenkh = txtTenKHGiaoHang.getText();
             String sdt = txtSDTGiaoHang.getText();
             String diaChi = txtDiaChiGiaoHang.getText();
             float tienShip = Float.valueOf(txtTienShip.getText());
 
-            if (txtDiaChiGiaoHang.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Ban chua nhap dia chi");
+            if (diaChi.isEmpty()) {
+                JOptionPane.showMessageDialog(rootPane, "Ban chua nhap dia chi");
 
-            } else if (txtSDTGiaoHang.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Ban chua SDT");
-                return;
-            } else if (txtTenKHGiaoHang.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Ban chua nhap tenKH");
-                return;
+            } else if (sdt.isEmpty() || sdt.matches("[a-zA-Z]")) {
+                JOptionPane.showMessageDialog(rootPane, "Ban chua SDT");
+
+            } else if (!(sdt.matches("^[0-9]{10}$"))) {
+                JOptionPane.showMessageDialog(rootPane, "Ban nhập sai SĐT");
+
+            } else if (tenkh.isEmpty()) {
+                JOptionPane.showMessageDialog(rootPane, "Ban chua nhap tenKH");
+
             } else if (txtTienShip.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Ban chua nhap tien ship");
-                return;
+                JOptionPane.showMessageDialog(rootPane, "Ban chua nhap tien ship");
+
+            } else if (txtTienShip.getText().matches("[a-zA-Z]")) {
+                JOptionPane.showMessageDialog(rootPane, "Sai định dạng tiền ship");
+
+            } else if (jdcNgayHenKhach.getDate() == null) {
+                JOptionPane.showMessageDialog(rootPane, "Ban chua nhap ngay hen khach");
+
             } else {
+                HoaDon hoaDonHenKH = new HoaDon(ngayHenKhach);
+                JOptionPane.showMessageDialog(this, hoaDonService.updateNgayHenGiaoHang(hoaDonHenKH, idSelected));
                 HoaDon hoaDonTTKHGH = new HoaDon(tienShip, tenkh, diaChi, sdt);
                 JOptionPane.showMessageDialog(this, hoaDonService.updateTTKHGiaoHang(hoaDonTTKHGH, idSelected));
                 btnApDungTienShip.setEnabled(true);
