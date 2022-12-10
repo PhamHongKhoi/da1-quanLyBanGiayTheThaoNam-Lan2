@@ -808,6 +808,18 @@ public class FrmDasBoard extends javax.swing.JFrame {
         }
     }
 
+    private void dangGiaoHang() {
+        rdoDangGiaoHang.setSelected(true);
+        if (rdoDangGiaoHang.isSelected() == true) {
+            int trangThai = 3;
+            TBHoaDon.clearSelection();
+            btnThanhToan1.setEnabled(true);
+            btnHuyHoaDonGH.setEnabled(true);
+            listHD = hoaDonService.getAllByTrangThai(trangThai);
+            showDataTableHD(listHD);
+        }
+    }
+
     // ls hd
     private void showDataTableCTHDLS(ArrayList<ChiTietHoaDon> lists) {
         dtmGH = (DefaultTableModel) TBGioHangLS.getModel();
@@ -967,6 +979,7 @@ public class FrmDasBoard extends javax.swing.JFrame {
         btnApDungTienShip = new javax.swing.JButton();
         txtSoLuongTon = new javax.swing.JTextField();
         txtSoLuongGh = new javax.swing.JTextField();
+        rdoDangGiaoHang = new javax.swing.JRadioButton();
         pnlCard2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
@@ -2069,6 +2082,14 @@ public class FrmDasBoard extends javax.swing.JFrame {
 
         tab.addTab("Giao hang", palGH);
 
+        buttonGroup1.add(rdoDangGiaoHang);
+        rdoDangGiaoHang.setText("Đang giao hàng");
+        rdoDangGiaoHang.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rdoDangGiaoHangMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlCard1Layout = new javax.swing.GroupLayout(pnlCard1);
         pnlCard1.setLayout(pnlCard1Layout);
         pnlCard1Layout.setHorizontalGroup(
@@ -2103,7 +2124,9 @@ public class FrmDasBoard extends javax.swing.JFrame {
                                         .addGap(36, 36, 36)
                                         .addComponent(rdoDaHuy)
                                         .addGap(36, 36, 36)
-                                        .addComponent(rdoTatCa, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(rdoTatCa, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(rdoDangGiaoHang))
                                     .addGroup(pnlCard1Layout.createSequentialGroup()
                                         .addContainerGap()
                                         .addComponent(jLabel3))
@@ -2143,7 +2166,8 @@ public class FrmDasBoard extends javax.swing.JFrame {
                     .addComponent(rdoDaThanhToan)
                     .addComponent(rdoChoThanhToan)
                     .addComponent(rdoDaHuy)
-                    .addComponent(rdoTatCa))
+                    .addComponent(rdoTatCa)
+                    .addComponent(rdoDangGiaoHang))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addGap(20, 20, 20)
@@ -6531,6 +6555,10 @@ public class FrmDasBoard extends javax.swing.JFrame {
             txtDiaChi.setEditable(false);
             txtDiaChiGiaoHang.setEditable(false);
             txtTienShip.setEditable(false);
+
+            BtnXoa.setEnabled(false);
+            TBSanPham.setEnabled(false);
+            TBGioHang.setEnabled(false);
         } else if (TBHoaDon.getModel().getValueAt(row, 5).toString() == "Đang chờ thanh toán") {
             btnThanhToan.setEnabled(true);
             btnHuyHoaDon.setEnabled(true);
@@ -6560,6 +6588,54 @@ public class FrmDasBoard extends javax.swing.JFrame {
             btnGuiHang.setEnabled(false);
             btnThanhToan1.setEnabled(false);
             btnApDungTienShip.setEnabled(false);
+            BtnXoa.setEnabled(true);
+            TBSanPham.setEnabled(true);
+            TBGioHang.setEnabled(true);
+        } else if (TBHoaDon.getModel().getValueAt(row, 5).toString() == "Đang giao hàng") {
+            btnThanhToan.setEnabled(false);
+            btnHuyHoaDon.setEnabled(false);
+            txtMaHD.setEnabled(false);
+            txtMaNV.setEnabled(false);
+            txtNgayTao.setEnabled(false);
+            txtTienKhachDua.setEnabled(false);
+            txtMaNV.setEnabled(false);
+            txtSDT.setEnabled(false);
+            txtTenKH.setEnabled(false);
+            txtMaHDGiaoHang.setEnabled(false);
+            txtMaNVGiaoHang.setEnabled(false);
+            txtNgayTaoGiaoHang.setEnabled(false);
+            txtTienKhachDuaGiaoHang.setEnabled(true);
+            txtMaNVGiaoHang.setEnabled(false);
+            txtSDTGiaoHang.setEnabled(false);
+            txtTenKHGiaoHang.setEnabled(false);
+            txtDiaChi.setEnabled(false);
+            txtDiaChiGiaoHang.setEnabled(false);
+            txtTienShip.setEnabled(false);
+
+            jdcNgayHenKhach.setEnabled(false);
+            btnApDungTienShip.setEnabled(false);
+            btnNgayHenKhach.setEnabled(false);
+            btnHuyHoaDonGH.setEnabled(false);
+            btnThanhToan1.setEnabled(true);
+            btnHuyHoaDonGH.setEnabled(true);
+            BtnXoa.setEnabled(false);
+            TBSanPham.setEnabled(false);
+            TBGioHang.setEnabled(false);
+
+            int sum = 0;
+            int tienShiptt = Integer.valueOf(txtTienShip.getText());
+            if (txtTienShip.getText().isEmpty()) {
+                tienShiptt = 0;
+            }
+            for (int i = 0; i < TBGioHang.getRowCount(); i++) {
+                sum = sum + Integer.parseInt(TBGioHang.getModel().getValueAt(i, 6).toString());
+            }
+            System.out.println(sum);
+            Locale locale = new Locale("vi", "VN");
+            NumberFormat format = NumberFormat.getCurrencyInstance(locale);
+            jTongTien.setText(format.format(sum));
+            jTongTienGiaoHang.setText(format.format(sum + tienShiptt));
+            txtTienKhachDuaGiaoHang.setText(String.valueOf(sum + tienShiptt));
         } else {
             btnThanhToan.setEnabled(false);
             btnHuyHoaDon.setEnabled(false);
@@ -6585,6 +6661,9 @@ public class FrmDasBoard extends javax.swing.JFrame {
             btnApDungTienShip.setEnabled(false);
             btnNgayHenKhach.setEnabled(false);
             btnHuyHoaDonGH.setEnabled(false);
+            BtnXoa.setEnabled(false);
+            TBSanPham.setEnabled(false);
+            TBGioHang.setEnabled(false);
         }
 
         jTienThua.setText("-");
@@ -6617,9 +6696,12 @@ public class FrmDasBoard extends javax.swing.JFrame {
 //                    String idHDS = TBHoaDon.getModel().getValueAt(row, 1).toString();
 
                     String inputXoa = JOptionPane.showInputDialog("Mời bạn nhập số lượng " + masp + " - " + tensp + " :");
-                    if (inputXoa == null || inputXoa.equals("0") || inputXoa.matches("[a-zA-Z]")) {
+                    if (inputXoa == null) {
                         JOptionPane.showMessageDialog(rootPane, "Ko co thay doi");
-
+                    } else if (!(inputXoa.matches("\\d*"))) {
+                        JOptionPane.showMessageDialog(rootPane, "Bạn nhập sai định dạng");
+                    } else if (inputXoa.equals("0")) {
+                        BtnXoa.doClick();
                     } else {
                         String idSPSelected = TBGioHang.getModel().getValueAt(row, 1).toString();
                         String idHDS = TBHoaDon.getModel().getValueAt(rowHD, 1).toString();
@@ -6719,11 +6801,11 @@ public class FrmDasBoard extends javax.swing.JFrame {
                             String input = JOptionPane.showInputDialog("Mời nhập số lượng: ");
                             if (input == null) {
                                 JOptionPane.showMessageDialog(rootPane, "Ko co san pham nao dc them");
+                            } else if (input.equals("0") || input.matches("[a-zA-Z]")) {
+                                JOptionPane.showMessageDialog(rootPane, "Bạn nhập sai định dạng");
+                            } else if ((int) TBSanPham.getModel().getValueAt(row, 6) < Integer.valueOf(input)) {
+                                JOptionPane.showMessageDialog(rootPane, "Số lượng hàng vượt quá lượng tồn kho");
                             } else {
-                                if ((int) TBSanPham.getModel().getValueAt(row, 6) < Integer.valueOf(input)) {
-                                    JOptionPane.showMessageDialog(rootPane, "Số lượng hàng vượt quá lượng tồn kho");
-
-                                }
 
                                 // check san pham trung trong gio hang
                                 int soLuongHDCT;
@@ -6916,10 +6998,16 @@ public class FrmDasBoard extends javax.swing.JFrame {
             txtMaHDGiaoHang.setEnabled(false);
             txtMaNVGiaoHang.setEnabled(false);
             txtNgayTaoGiaoHang.setEnabled(false);
+            btnApDungTienShip.setEnabled(false);
+            txtTenKHGiaoHang.setEnabled(true);
+            txtDiaChiGiaoHang.setEnabled(true);
+            txtSDTGiaoHang.setEnabled(true);
+            BtnXoa.setEnabled(true);
+            TBSanPham.setEnabled(true);
+            TBGioHang.setEnabled(true);
         } else if (taoHD == JOptionPane.NO_OPTION) {
             JOptionPane.showMessageDialog(this, "Bạn đã hủy thêm");
         }
-
     }//GEN-LAST:event_btnTaoHoaDonActionPerformed
 
     private void btnThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThanhToanActionPerformed
@@ -7181,7 +7269,18 @@ public class FrmDasBoard extends javax.swing.JFrame {
                 btnApDungTienShip.setEnabled(false);
                 jdcNgayHenKhach.setEnabled(false);
 
+                //cap nhat trang thai 
+                String maSelected = TBHoaDon.getModel().getValueAt(rowHD, 2).toString();
+                int trangThai = 3;
+                HoaDon hoaDon = new HoaDon(trangThai);
+                JOptionPane.showMessageDialog(this, hoaDonService.updateThanhToan(hoaDon, maSelected));
+                listHD = hoaDonService.getAll();
+                showDataTableHD(listHD);
+
                 txtTienKhachDuaGiaoHang.setText(String.valueOf(sum + tienShiptt));
+                btnGuiHang.setEnabled(false);
+                btnNgayHenKhach.setEnabled(false);
+                dangGiaoHang();
             }
         } else if (guiHang == JOptionPane.NO_OPTION) {
             JOptionPane.showMessageDialog(this, "Bạn đã hủy gửi hàng");
@@ -7260,6 +7359,17 @@ public class FrmDasBoard extends javax.swing.JFrame {
         jdcNgayKetThucThongKe.setEnabled(true);
         btTimKiemNgayThongKe.setEnabled(true);
     }//GEN-LAST:event_jRadioButton2ActionPerformed
+
+    private void rdoDangGiaoHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rdoDangGiaoHangMouseClicked
+        if (rdoDangGiaoHang.isSelected() == true) {
+            int trangThai = 3;
+            TBHoaDon.clearSelection();
+            btnThanhToan1.setEnabled(true);
+            btnHuyHoaDonGH.setEnabled(true);
+            listHD = hoaDonService.getAllByTrangThai(trangThai);
+            showDataTableHD(listHD);
+        }
+    }//GEN-LAST:event_rdoDangGiaoHangMouseClicked
     private QuanLySanPhamGiamGia getSanPhamGiamGia() {
         int indexTenKhuyenMai = cbbTenKhuyenMaiSanPhamKhuyenMai.getSelectedIndex();
         QuanLyKhuyenMai km = lstKm.get(indexTenKhuyenMai);
@@ -7894,6 +8004,7 @@ public class FrmDasBoard extends javax.swing.JFrame {
     private javax.swing.JRadioButton rdoChoThanhToan;
     private javax.swing.JRadioButton rdoDaHuy;
     private javax.swing.JRadioButton rdoDaThanhToan;
+    private javax.swing.JRadioButton rdoDangGiaoHang;
     private javax.swing.JRadioButton rdoTatCa;
     private javax.swing.JTabbedPane tab;
     private javax.swing.JTable tbChiTietSanPham;

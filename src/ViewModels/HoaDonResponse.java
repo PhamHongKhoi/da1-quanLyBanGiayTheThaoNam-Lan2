@@ -88,8 +88,6 @@ public class HoaDonResponse {
         this.diaChi = diaChi;
     }
 
-    
-
     public Date getNgayHenKhach() {
         return ngayHenKhach;
     }
@@ -191,6 +189,8 @@ public class HoaDonResponse {
             return "Đang chờ thanh toán";
         } else if (trangThai == 2) {
             return "Đã huỷ";
+        } else if (trangThai == 3) {
+            return "Đang giao hàng";
         } else {
             return "Đã thanh toán";
         }

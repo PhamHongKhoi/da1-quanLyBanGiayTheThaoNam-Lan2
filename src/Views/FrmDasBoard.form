@@ -367,6 +367,8 @@
                                                       <Component id="rdoDaHuy" min="-2" max="-2" attributes="0"/>
                                                       <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                                                       <Component id="rdoTatCa" min="-2" pref="98" max="-2" attributes="0"/>
+                                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                      <Component id="rdoDangGiaoHang" min="-2" max="-2" attributes="0"/>
                                                   </Group>
                                                   <Group type="102" attributes="0">
                                                       <EmptySpace max="-2" attributes="0"/>
@@ -423,6 +425,7 @@
                                   <Component id="rdoChoThanhToan" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="rdoDaHuy" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="rdoTatCa" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="rdoDangGiaoHang" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
@@ -1469,6 +1472,17 @@
                     <Component class="javax.swing.JTextField" name="txtSoLuongTon">
                     </Component>
                     <Component class="javax.swing.JTextField" name="txtSoLuongGh">
+                    </Component>
+                    <Component class="javax.swing.JRadioButton" name="rdoDangGiaoHang">
+                      <Properties>
+                        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                          <ComponentRef name="buttonGroup1"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="&#x110;ang giao h&#xe0;ng"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="rdoDangGiaoHangMouseClicked"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
