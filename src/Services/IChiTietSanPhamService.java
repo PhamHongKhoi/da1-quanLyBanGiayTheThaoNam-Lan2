@@ -20,4 +20,12 @@ public interface IChiTietSanPhamService {
     String update(QuanLyChiTietSanPham qlCtSp, String id);
 
     String delete(String id);
+
+    List<QuanLyChiTietSanPham> getThuongHieu(String ten);
+
+    List<QuanLyChiTietSanPham> getKichCo(String ten);
+
+    List<QuanLyChiTietSanPham> getGiaSanPham(String giaThapNhat, String giaCaoNhat);
+
+    List<QuanLyChiTietSanPham> getSanPham(String ten);
 }

@@ -150,4 +150,121 @@ public class ChiTietSanPhamRespository implements IChiTietSanPham {
         return check > 0;
     }
 
+    @Override
+    public List<ChiTietSanPham> getThuongHieuCtsp(String ten) {
+        String query = "SELECT SanPhamChiTiet.Id,SanPhamChiTiet.MoTa,SanPhamChiTiet.SoLuongTon,SanPhamChiTiet.GiaNhap,SanPhamChiTiet.GiaBan,SanPhamChiTiet.NamBH,\n"
+                + "                               SanPhamChiTiet.HinhAnh,DongSP.Ten,NSX.Ten,KieuDang.Ten,KichCo.Ten,ChatLieu.DaChinh,\n"
+                + "                        	   MauSac.Ten,SanPham.Ten,ThuongHieu.Ten,SanPhamChiTiet.QrCode\n"
+                + "                        from DA1.dbo.SanPhamChiTiet inner join DongSP on SanPhamChiTiet.IdDongSP = DongSP.Id\n"
+                + "                        							inner join NSX on SanPhamChiTiet.IdNSX = NSX.Id\n"
+                + "                       							inner join KieuDang on SanPhamChiTiet.IdKieuDang = KieuDang.Id\n"
+                + "                       							inner join KichCo on SanPhamChiTiet.IdKichCo = KichCo.Id\n"
+                + "                       							inner join ChatLieu on SanPhamChiTiet.IdChatLieu = ChatLieu.Id\n"
+                + "                        							inner join MauSac on SanPhamChiTiet.IdMauSac = MauSac.Id\n"
+                + "                        							inner join SanPham on SanPhamChiTiet.IdSanPham = SanPham.Id\n"
+                + "                        							inner join ThuongHieu on SanPhamChiTiet.IdThuongHieu = ThuongHieu.Id\n"
+                + "where ThuongHieu.Ten = ?";
+        try ( Connection con = SQLServerConnection.getConnection();  PreparedStatement ps = con.prepareCall(query)) {
+            ps.setObject(1, ten);
+            List<ChiTietSanPham> lstCtSp = new ArrayList<>();
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                ChiTietSanPham ctSp = new ChiTietSanPham(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getDouble(4), rs.getDouble(5), rs.getInt(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12), rs.getString(13), rs.getString(14), rs.getString(15), rs.getString(16));
+                lstCtSp.add(ctSp);
+            }
+            return lstCtSp;
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+        return null;
+    }
+
+    @Override
+    public List<ChiTietSanPham> getKichCoCtsp(String ten) {
+        String query = "SELECT SanPhamChiTiet.Id,SanPhamChiTiet.MoTa,SanPhamChiTiet.SoLuongTon,SanPhamChiTiet.GiaNhap,SanPhamChiTiet.GiaBan,SanPhamChiTiet.NamBH,\n"
+                + "                               SanPhamChiTiet.HinhAnh,DongSP.Ten,NSX.Ten,KieuDang.Ten,KichCo.Ten,ChatLieu.DaChinh,\n"
+                + "                        	   MauSac.Ten,SanPham.Ten,ThuongHieu.Ten,SanPhamChiTiet.QrCode\n"
+                + "                        from DA1.dbo.SanPhamChiTiet inner join DongSP on SanPhamChiTiet.IdDongSP = DongSP.Id\n"
+                + "                        							inner join NSX on SanPhamChiTiet.IdNSX = NSX.Id\n"
+                + "                       							inner join KieuDang on SanPhamChiTiet.IdKieuDang = KieuDang.Id\n"
+                + "                       							inner join KichCo on SanPhamChiTiet.IdKichCo = KichCo.Id\n"
+                + "                       							inner join ChatLieu on SanPhamChiTiet.IdChatLieu = ChatLieu.Id\n"
+                + "                        							inner join MauSac on SanPhamChiTiet.IdMauSac = MauSac.Id\n"
+                + "                        							inner join SanPham on SanPhamChiTiet.IdSanPham = SanPham.Id\n"
+                + "                        							inner join ThuongHieu on SanPhamChiTiet.IdThuongHieu = ThuongHieu.Id\n"
+                + "where KichCo.Ten = ?";
+        try ( Connection con = SQLServerConnection.getConnection();  PreparedStatement ps = con.prepareCall(query)) {
+            ps.setObject(1, ten);
+            List<ChiTietSanPham> lstCtSp = new ArrayList<>();
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                ChiTietSanPham ctSp = new ChiTietSanPham(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getDouble(4), rs.getDouble(5), rs.getInt(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12), rs.getString(13), rs.getString(14), rs.getString(15), rs.getString(16));
+                lstCtSp.add(ctSp);
+            }
+            return lstCtSp;
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+        return null;
+    }
+
+    @Override
+    public List<ChiTietSanPham> getGiaSanPham(String giaThapNhat, String giaCaoNhat) {
+        String query = "SELECT SanPhamChiTiet.Id,SanPhamChiTiet.MoTa,SanPhamChiTiet.SoLuongTon,SanPhamChiTiet.GiaNhap,SanPhamChiTiet.GiaBan,SanPhamChiTiet.NamBH,\n"
+                + "                               SanPhamChiTiet.HinhAnh,DongSP.Ten,NSX.Ten,KieuDang.Ten,KichCo.Ten,ChatLieu.DaChinh,\n"
+                + "                        	   MauSac.Ten,SanPham.Ten,ThuongHieu.Ten,SanPhamChiTiet.QrCode\n"
+                + "                        from DA1.dbo.SanPhamChiTiet inner join DongSP on SanPhamChiTiet.IdDongSP = DongSP.Id\n"
+                + "                        							inner join NSX on SanPhamChiTiet.IdNSX = NSX.Id\n"
+                + "                       							inner join KieuDang on SanPhamChiTiet.IdKieuDang = KieuDang.Id\n"
+                + "                       							inner join KichCo on SanPhamChiTiet.IdKichCo = KichCo.Id\n"
+                + "                       							inner join ChatLieu on SanPhamChiTiet.IdChatLieu = ChatLieu.Id\n"
+                + "                        							inner join MauSac on SanPhamChiTiet.IdMauSac = MauSac.Id\n"
+                + "                        							inner join SanPham on SanPhamChiTiet.IdSanPham = SanPham.Id\n"
+                + "                        							inner join ThuongHieu on SanPhamChiTiet.IdThuongHieu = ThuongHieu.Id\n"
+                + "where SanPhamChiTiet.GiaBan >= ? and SanPhamChiTiet.GiaBan <= ?";
+        try ( Connection con = SQLServerConnection.getConnection();  PreparedStatement ps = con.prepareCall(query)) {
+            ps.setObject(1, giaThapNhat);
+            ps.setObject(2, giaCaoNhat);
+            List<ChiTietSanPham> lstCtSp = new ArrayList<>();
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                ChiTietSanPham ctSp = new ChiTietSanPham(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getDouble(4), rs.getDouble(5), rs.getInt(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12), rs.getString(13), rs.getString(14), rs.getString(15), rs.getString(16));
+                lstCtSp.add(ctSp);
+            }
+            return lstCtSp;
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+        return null;
+    }
+
+    @Override
+    public List<ChiTietSanPham> getSanPham(String ten) {
+        String query = "SELECT SanPhamChiTiet.Id,SanPhamChiTiet.MoTa,SanPhamChiTiet.SoLuongTon,SanPhamChiTiet.GiaNhap,SanPhamChiTiet.GiaBan,SanPhamChiTiet.NamBH,\n"
+                + "                               SanPhamChiTiet.HinhAnh,DongSP.Ten,NSX.Ten,KieuDang.Ten,KichCo.Ten,ChatLieu.DaChinh,\n"
+                + "                        	   MauSac.Ten,SanPham.Ten,ThuongHieu.Ten,SanPhamChiTiet.QrCode\n"
+                + "                        from DA1.dbo.SanPhamChiTiet inner join DongSP on SanPhamChiTiet.IdDongSP = DongSP.Id\n"
+                + "                        							inner join NSX on SanPhamChiTiet.IdNSX = NSX.Id\n"
+                + "                       							inner join KieuDang on SanPhamChiTiet.IdKieuDang = KieuDang.Id\n"
+                + "                       							inner join KichCo on SanPhamChiTiet.IdKichCo = KichCo.Id\n"
+                + "                       							inner join ChatLieu on SanPhamChiTiet.IdChatLieu = ChatLieu.Id\n"
+                + "                        							inner join MauSac on SanPhamChiTiet.IdMauSac = MauSac.Id\n"
+                + "                        							inner join SanPham on SanPhamChiTiet.IdSanPham = SanPham.Id\n"
+                + "                        							inner join ThuongHieu on SanPhamChiTiet.IdThuongHieu = ThuongHieu.Id\n"
+                + "where SanPham.Ten = ?";
+        try ( Connection con = SQLServerConnection.getConnection();  PreparedStatement ps = con.prepareCall(query)) {
+            ps.setObject(1, ten);
+            List<ChiTietSanPham> lstCtSp = new ArrayList<>();
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                ChiTietSanPham ctSp = new ChiTietSanPham(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getDouble(4), rs.getDouble(5), rs.getInt(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12), rs.getString(13), rs.getString(14), rs.getString(15), rs.getString(16));
+                lstCtSp.add(ctSp);
+            }
+            return lstCtSp;
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+        return null;
+    }
+
 }

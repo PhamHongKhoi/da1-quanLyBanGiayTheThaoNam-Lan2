@@ -20,4 +20,12 @@ public interface IChiTietSanPham {
     boolean update(ChiTietSanPham ctSp, String id);
 
     boolean delete(String id);
+
+    List<ChiTietSanPham> getThuongHieuCtsp(String ten);
+
+    List<ChiTietSanPham> getKichCoCtsp(String ten);
+
+    List<ChiTietSanPham> getGiaSanPham(String giaThapNhat, String giaCaoNhat);
+
+    List<ChiTietSanPham> getSanPham(String ten);
 }

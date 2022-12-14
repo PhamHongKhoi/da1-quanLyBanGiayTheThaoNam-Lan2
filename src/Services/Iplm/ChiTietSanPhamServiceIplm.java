@@ -63,4 +63,52 @@ public class ChiTietSanPhamServiceIplm implements IChiTietSanPhamService {
         }
     }
 
+    @Override
+    public List<QuanLyChiTietSanPham> getThuongHieu(String ten) {
+        List<ChiTietSanPham> lstChiTietSp = ctspR.getThuongHieuCtsp(ten);
+        List<QuanLyChiTietSanPham> lstQlCtSp = new ArrayList<>();
+
+        for (ChiTietSanPham ct : lstChiTietSp) {
+            QuanLyChiTietSanPham qlSp = new QuanLyChiTietSanPham(ct.getIdCtsp(), ct.getMoTa(), ct.getSoLuongTon(), ct.getGiaNhap(), ct.getGiaban(), ct.getNamBanHang(), ct.getHinhAnh(), ct.getIdKhuyenMai(), ct.getIdDongSp(), ct.getIdNSX(), ct.getIdKieuDang(), ct.getIdKichCo(), ct.getIdChatLieu(), ct.getIdMauSac(), ct.getIdSanPham(), ct.getIdThuongHieu(), ct.getQrCode());
+            lstQlCtSp.add(qlSp);
+        }
+        return lstQlCtSp;
+    }
+
+    @Override
+    public List<QuanLyChiTietSanPham> getKichCo(String ten) {
+        List<ChiTietSanPham> lstChiTietSp = ctspR.getKichCoCtsp(ten);
+        List<QuanLyChiTietSanPham> lstQlCtSp = new ArrayList<>();
+
+        for (ChiTietSanPham ct : lstChiTietSp) {
+            QuanLyChiTietSanPham qlSp = new QuanLyChiTietSanPham(ct.getIdCtsp(), ct.getMoTa(), ct.getSoLuongTon(), ct.getGiaNhap(), ct.getGiaban(), ct.getNamBanHang(), ct.getHinhAnh(), ct.getIdKhuyenMai(), ct.getIdDongSp(), ct.getIdNSX(), ct.getIdKieuDang(), ct.getIdKichCo(), ct.getIdChatLieu(), ct.getIdMauSac(), ct.getIdSanPham(), ct.getIdThuongHieu(), ct.getQrCode());
+            lstQlCtSp.add(qlSp);
+        }
+        return lstQlCtSp;
+    }
+
+    @Override
+    public List<QuanLyChiTietSanPham> getGiaSanPham(String giaThapNhat, String giaCaoNhat) {
+        List<ChiTietSanPham> lstChiTietSp = ctspR.getGiaSanPham(giaThapNhat, giaCaoNhat);
+        List<QuanLyChiTietSanPham> lstQlCtSp = new ArrayList<>();
+
+        for (ChiTietSanPham ct : lstChiTietSp) {
+            QuanLyChiTietSanPham qlSp = new QuanLyChiTietSanPham(ct.getIdCtsp(), ct.getMoTa(), ct.getSoLuongTon(), ct.getGiaNhap(), ct.getGiaban(), ct.getNamBanHang(), ct.getHinhAnh(), ct.getIdKhuyenMai(), ct.getIdDongSp(), ct.getIdNSX(), ct.getIdKieuDang(), ct.getIdKichCo(), ct.getIdChatLieu(), ct.getIdMauSac(), ct.getIdSanPham(), ct.getIdThuongHieu(), ct.getQrCode());
+            lstQlCtSp.add(qlSp);
+        }
+        return lstQlCtSp;
+    }
+
+    @Override
+    public List<QuanLyChiTietSanPham> getSanPham(String ten) {
+        List<ChiTietSanPham> lstChiTietSp = ctspR.getSanPham(ten);
+        List<QuanLyChiTietSanPham> lstQlCtSp = new ArrayList<>();
+
+        for (ChiTietSanPham ct : lstChiTietSp) {
+            QuanLyChiTietSanPham qlSp = new QuanLyChiTietSanPham(ct.getIdCtsp(), ct.getMoTa(), ct.getSoLuongTon(), ct.getGiaNhap(), ct.getGiaban(), ct.getNamBanHang(), ct.getHinhAnh(), ct.getIdKhuyenMai(), ct.getIdDongSp(), ct.getIdNSX(), ct.getIdKieuDang(), ct.getIdKichCo(), ct.getIdChatLieu(), ct.getIdMauSac(), ct.getIdSanPham(), ct.getIdThuongHieu(), ct.getQrCode());
+            lstQlCtSp.add(qlSp);
+        }
+        return lstQlCtSp;
+    }
+
 }
