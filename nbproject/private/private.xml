@@ -7,13 +7,17 @@
             <file>file:/D:/java/DuAn1-main-git/da1-quanLyBanGiayTheThaoNam-Lan2/src/Repository/IChiTietHoaDonRepository.java</file>
             <file>file:/D:/java/DuAn1-main-git/da1-quanLyBanGiayTheThaoNam-Lan2/src/Views/FrmThemNhanhChatLieu.java</file>
             <file>file:/D:/java/DuAn1-main-git/da1-quanLyBanGiayTheThaoNam-Lan2/src/Services/Iplm/ChiTietSanPhamServiceIplm.java</file>
+            <file>file:/D:/java/DuAn1-main-git/da1-quanLyBanGiayTheThaoNam-Lan2/src/Services/IThongKeService.java</file>
             <file>file:/D:/java/DuAn1-main-git/da1-quanLyBanGiayTheThaoNam-Lan2/src/Repository/IChiTietSanPham.java</file>
             <file>file:/D:/java/DuAn1-main-git/da1-quanLyBanGiayTheThaoNam-Lan2/src/Utilities/SQLServerConnection.java</file>
+            <file>file:/D:/java/DuAn1-main-git/da1-quanLyBanGiayTheThaoNam-Lan2/src/Repository/IThongKeRespository.java</file>
             <file>file:/D:/java/DuAn1-main-git/da1-quanLyBanGiayTheThaoNam-Lan2/src/Repository/Iplm/ChiTietHoaDonRepository.java</file>
             <file>file:/D:/java/DuAn1-main-git/da1-quanLyBanGiayTheThaoNam-Lan2/src/Repository/IKhachHangRRepository.java</file>
             <file>file:/D:/java/DuAn1-main-git/da1-quanLyBanGiayTheThaoNam-Lan2/src/Repository/IHoaDonRepository.java</file>
             <file>file:/D:/java/DuAn1-main-git/da1-quanLyBanGiayTheThaoNam-Lan2/src/ViewModels/QuanLyThongKe.java</file>
             <file>file:/D:/java/DuAn1-main-git/da1-quanLyBanGiayTheThaoNam-Lan2/src/Repository/IKhachHangRespository.java</file>
+            <file>file:/D:/java/DuAn1-main-git/da1-quanLyBanGiayTheThaoNam-Lan2/src/Services/Iplm/ThongKeService.java</file>
+            <file>file:/D:/java/DuAn1-main-git/da1-quanLyBanGiayTheThaoNam-Lan2/src/Repository/Iplm/ThongKeRespository.java</file>
             <file>file:/D:/java/DuAn1-main-git/da1-quanLyBanGiayTheThaoNam-Lan2/src/Views/FrmDasBoard.java</file>
             <file>file:/D:/java/DuAn1-main-git/da1-quanLyBanGiayTheThaoNam-Lan2/src/Repository/Iplm/KhachHangRespositoryIplm.java</file>
             <file>file:/D:/java/DuAn1-main-git/da1-quanLyBanGiayTheThaoNam-Lan2/src/Services/IChiTietSanPhamService.java</file>

@@ -5,6 +5,7 @@
 package Repository;
 
 import DomainModel.ThongKe;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -18,4 +19,8 @@ public interface IThongKeRespository {
     List<ThongKe> getHangHuy();
 
     List<ThongKe> getTongTien();
+
+    List<ThongKe> getDanhMucHangHoa(String ten);
+
+    List<ThongKe> getNgayTaoHoaDon(String ngayBatDau, String ngayKetThuc);
 }

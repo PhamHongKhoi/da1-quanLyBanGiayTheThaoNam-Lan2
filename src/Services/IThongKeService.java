@@ -5,6 +5,7 @@
 package Services;
 
 import ViewModels.QuanLyThongKe;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -18,4 +19,8 @@ public interface IThongKeService {
     List<QuanLyThongKe> getHangHuy();
 
     List<QuanLyThongKe> getTongTien();
+
+    List<QuanLyThongKe> getDanhMuc(String ten);
+
+    List<QuanLyThongKe> getNgayTaoHoaDon(String ngayBatDau, String ngayKetThuc);
 }

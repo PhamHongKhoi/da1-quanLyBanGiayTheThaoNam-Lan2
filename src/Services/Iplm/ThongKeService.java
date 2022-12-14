@@ -9,6 +9,7 @@ import Repository.Iplm.ThongKeRespository;
 import Services.IThongKeService;
 import ViewModels.QuanLyThongKe;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -50,6 +51,28 @@ public class ThongKeService implements IThongKeService {
             lstQlTk.add(qlTk);
         }
         return lstQlTk;
+    }
+
+    @Override
+    public List<QuanLyThongKe> getDanhMuc(String ten) {
+        List<ThongKe> lstThongKe = tkr.getDanhMucHangHoa(ten);
+        List<QuanLyThongKe> lstQlThongKe = new ArrayList<>();
+        for (ThongKe tk : lstThongKe) {
+            QuanLyThongKe qlTk = new QuanLyThongKe(tk.getTen(), tk.getSoLuong(), tk.getDonGia(), tk.getNgayTao(), tk.getTongTien());
+            lstQlThongKe.add(qlTk);
+        }
+        return lstQlThongKe;
+    }
+
+    @Override
+    public List<QuanLyThongKe> getNgayTaoHoaDon(String ngayBatDau, String ngayKetThuc) {
+        List<ThongKe> lstThongKe = tkr.getNgayTaoHoaDon(ngayBatDau, ngayKetThuc);
+        List<QuanLyThongKe> lstQlThongKe = new ArrayList<>();
+        for (ThongKe tk : lstThongKe) {
+            QuanLyThongKe qlTk = new QuanLyThongKe(tk.getTen(), tk.getSoLuong(), tk.getDonGia(), tk.getNgayTao(), tk.getTongTien());
+            lstQlThongKe.add(qlTk);
+        }
+        return lstQlThongKe;
     }
 
 }

@@ -79,4 +79,53 @@ public class ThongKeRespository implements IThongKeRespository {
         return null;
     }
 
+    @Override
+    public List<ThongKe> getDanhMucHangHoa(String ten) {
+        String query = "SELECT dbo.SanPham.Ten, dbo.HoaDonChiTiet.SoLuong, dbo.HoaDonChiTiet.DonGia, dbo.HoaDon.NgayTao,sum(SoLuong*DonGia)\n"
+                + "                                FROM     dbo.HoaDon INNER JOIN\n"
+                + "                                                  dbo.HoaDonChiTiet ON dbo.HoaDon.Id = dbo.HoaDonChiTiet.IdHD INNER JOIN\n"
+                + "                                                  dbo.SanPhamChiTiet ON dbo.HoaDonChiTiet.IdCTSP = dbo.SanPhamChiTiet.Id INNER JOIN\n"
+                + "                                                 dbo.SanPham ON dbo.SanPhamChiTiet.IdSanPham = dbo.SanPham.Id\n"
+                + "												 where SanPham.Ten = ?\n"
+                + "                group by dbo.SanPham.Ten, dbo.HoaDonChiTiet.SoLuong, dbo.HoaDonChiTiet.DonGia, dbo.HoaDon.NgayTao";
+        try ( Connection con = SQLServerConnection.getConnection();  PreparedStatement ps = con.prepareCall(query)) {
+            ps.setObject(1, ten);
+            List<ThongKe> lsttk = new ArrayList<>();
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                ThongKe tk = new ThongKe(rs.getString(1), rs.getInt(2), rs.getDouble(3), rs.getDate(4), rs.getFloat(5));
+                lsttk.add(tk);
+            }
+            return lsttk;
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+        return null;
+    }
+
+    @Override
+    public List<ThongKe> getNgayTaoHoaDon(String ngayBatDau, String ngayKetThuc) {
+        String query = "SELECT dbo.SanPham.Ten, dbo.HoaDonChiTiet.SoLuong, dbo.HoaDonChiTiet.DonGia, dbo.HoaDon.NgayTao,sum(SoLuong*DonGia)\n"
+                + "                                FROM     dbo.HoaDon INNER JOIN\n"
+                + "                                                  dbo.HoaDonChiTiet ON dbo.HoaDon.Id = dbo.HoaDonChiTiet.IdHD INNER JOIN\n"
+                + "                                                  dbo.SanPhamChiTiet ON dbo.HoaDonChiTiet.IdCTSP = dbo.SanPhamChiTiet.Id INNER JOIN\n"
+                + "                                                 dbo.SanPham ON dbo.SanPhamChiTiet.IdSanPham = dbo.SanPham.Id\n"
+                + "												 where HoaDon.NgayTao >= ? and HoaDon.NgayTao <= ?\n"
+                + "                group by dbo.SanPham.Ten, dbo.HoaDonChiTiet.SoLuong, dbo.HoaDonChiTiet.DonGia, dbo.HoaDon.NgayTao";
+        try ( Connection con = SQLServerConnection.getConnection();  PreparedStatement ps = con.prepareCall(query)) {
+            ps.setObject(1, ngayBatDau);
+            ps.setObject(2, ngayKetThuc);
+            List<ThongKe> lsttk = new ArrayList<>();
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                ThongKe tk = new ThongKe(rs.getString(1), rs.getInt(2), rs.getDouble(3), rs.getDate(4), rs.getFloat(5));
+                lsttk.add(tk);
+            }
+            return lsttk;
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+        return null;
+    }
+
 }
