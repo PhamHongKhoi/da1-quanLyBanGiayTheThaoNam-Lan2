@@ -64,14 +64,19 @@ public class DongSanPhamImpl implements IDongSanPhamService {
 
     @Override
     public String update(QuanLyDongSanPham cv, String id) {
-        
-            DongSanPham kichCo = new DongSanPham("", cv.getMa(), cv.getTen(), cv.getTrangThai());
+
+        DongSanPham kichCo = new DongSanPham("", cv.getMa(), cv.getTen(), cv.getTrangThai());
+        QuanLyDongSanPham qlKhachhang = new QuanLyDongSanPham();
+        qlKhachhang = new DongSanPhamImpl().getmakc(cv.getMa());
+        if (qlKhachhang != null) {
+            return "Mã trùng yêu cầu nhập lại";
+        } else {
             boolean add = rp.update(kichCo, id);
             if (add == true) {
                 return "sửa thành công";
             } else {
                 return "sửa thất bại ";
-            
+            }
         }
     }
 

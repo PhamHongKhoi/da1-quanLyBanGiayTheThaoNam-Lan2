@@ -607,9 +607,9 @@ public class FrmDasBoard extends javax.swing.JFrame {
 
     private QuanLyChiTietSanPham getQlChiTietSp() {
         String moTa = jtpCtspMoTa.getText();
-        int soLuongTon = Integer.valueOf(txtCtspSoLuongTon.getText());
-        double giaNhap = Double.valueOf(txtCtspGiaNhap.getText());
-        double giaBan = Double.valueOf(txtCtspGiaBan.getText());
+        String soLuongTon = txtCtspSoLuongTon.getText();
+        String giaNhap = txtCtspGiaNhap.getText();
+        String giaBan = txtCtspGiaBan.getText();
         int namBh = Integer.valueOf(txtCtspNamBh.getText());
         String hinhAnh = strHinhAnhChiTietSanPham;
         int indexDongSp = cbbCtspDongSanPham.getSelectedIndex();
@@ -634,7 +634,7 @@ public class FrmDasBoard extends javax.swing.JFrame {
         int indexThuongHieu = cbbCtspThuongHieu.getSelectedIndex();
         QuanLyThuongHieu th = lstThuongHieu.get(indexThuongHieu);
 //        qlChiTietSp.setQrCode(null);
-        QuanLyChiTietSanPham qlChiTietSp = new QuanLyChiTietSanPham(null, moTa, soLuongTon, giaNhap, giaBan, namBh, hinhAnh, null, dongSp.getId(), nsx.getId(), kd.getId(), kc.getId(), cl.getId(), ms.getId(), sp.getId(), th.getId(), null);
+        QuanLyChiTietSanPham qlChiTietSp = new QuanLyChiTietSanPham(null, moTa, Integer.valueOf(soLuongTon), Double.valueOf(giaNhap), Double.valueOf(giaBan), namBh, hinhAnh, null, dongSp.getId(), nsx.getId(), kd.getId(), kc.getId(), cl.getId(), ms.getId(), sp.getId(), th.getId(), null);
         return qlChiTietSp;
     }
 
@@ -5853,6 +5853,10 @@ public class FrmDasBoard extends javax.swing.JFrame {
         QuanLyNhanVien qlnv = getNhanVien();
         if (txtMaNhanVien.getText().isEmpty() || txtTenNhanVien.getText().isEmpty() || txtDiaChiNhanVien.getText().isEmpty() || txtSoDienThoaiNhanVien.getText().isEmpty() || txtTenTk.getText().isEmpty() || jpfMatKhau.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "không được để trống !");
+        } else if (txtTenNhanVien.getText().matches("[a-z A-Z]+") == false) {
+            JOptionPane.showMessageDialog(this, "tên không đúng định dạng !");
+        } else if (txtSoDienThoaiNhanVien.getText().matches("^(0|\\+84)(\\s|\\.)?((3[2-9])|(5[689])|(7[06-9])|(8[1-689])|(9[0-46-9]))(\\d)(\\s|\\.)?(\\d{3})(\\s|\\.)?(\\d{3})$") == false) {
+            JOptionPane.showMessageDialog(this, " số điện thoại sai định dạng !");
         } else {
 
             String add = nvs.add(qlnv);
@@ -5905,10 +5909,54 @@ public class FrmDasBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_tbChiTietSanPhamMouseClicked
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        QuanLyChiTietSanPham qlChiTietSp = getQlChiTietSp();
+//        QuanLyChiTietSanPham qlChiTietSp = getQlChiTietSp();
+        String moTa = jtpCtspMoTa.getText();
+        String soLuongTon = txtCtspSoLuongTon.getText();
+        String giaNhap = txtCtspGiaNhap.getText();
+        String giaBan = txtCtspGiaBan.getText();
+        String namBh = txtCtspNamBh.getText();
+        String hinhAnh = strHinhAnhChiTietSanPham;
+        int indexDongSp = cbbCtspDongSanPham.getSelectedIndex();
+        QuanLyDongSanPham dongSp = lstDongSanPham.get(indexDongSp);
+        int indexNhaSanXuat = cbbCtspNhaSanXuat.getSelectedIndex();
+        QuanLyNhaSanXuat nsx = lstNhaSanXuat.get(indexNhaSanXuat);
+        int indexKieuDang = cbbCtspKieuDang.getSelectedIndex();
+        QuanLyKieuDang kd = lstKieuDang.get(indexKieuDang);
+//        qlChiTietSp.setIdKichCo(String.valueOf(cbbCtspKichCo.getSelectedItem()));
+        int indexKichCo = cbbCtspKichCo.getSelectedIndex();
+        QuanLyKichco kc = lstKichCo.get(indexKichCo);
+//        qlChiTietSp.setIdChatLieu(String.valueOf(cbbCtspChatLieu.getSelectedItem()));
+        int indexChatLieu = cbbCtspChatLieu.getSelectedIndex();
+        QuanLyChatLieu cl = lstChatLieu.get(indexChatLieu);
+//        qlChiTietSp.setIdMauSac(String.valueOf(cbbCtspMauSac.getSelectedItem()));
+        int indexMauSac = cbbCtspMauSac.getSelectedIndex();
+        QuanLyMauSac ms = lstMauSac.get(indexMauSac);
+//        qlChiTietSp.setIdSanPham(String.valueOf(cbbCtspSanPham.getSelectedItem()));
+        int indexSanPham = cbbCtspSanPham.getSelectedIndex();
+        QuanLySanPham sp = lstQLSp.get(indexSanPham);
+//        qlChiTietSp.setIdThuongHieu(String.valueOf(cbbCtspThuongHieu.getSelectedItem()));
+        int indexThuongHieu = cbbCtspThuongHieu.getSelectedIndex();
+        QuanLyThuongHieu th = lstThuongHieu.get(indexThuongHieu);
         if (txtCtspGiaBan.getText().isEmpty() || txtCtspGiaNhap.getText().isEmpty() || txtCtspNamBh.getText().isEmpty() || txtCtspSoLuongTon.getText().isEmpty() || jtpCtspMoTa.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "không được để trống !");
+        } else if (giaBan.matches("[0-9]+") == false) {
+            JOptionPane.showMessageDialog(this, "Giá bán phải là số nguyên dương  !");
+        } else if (Double.parseDouble(giaBan) <= 0) {
+            JOptionPane.showMessageDialog(this, "giá bán phải là số nguyên dương  !");
+        } else if (giaNhap.matches("[0-9]+") == false) {
+            JOptionPane.showMessageDialog(this, "giá nhập  phải là số nguyên dương !");
+        } else if (Double.parseDouble(giaNhap) <= 0) {
+            JOptionPane.showMessageDialog(this, "giá nhập phải là số nguyên dương !");
+        } else if (soLuongTon.matches("[0-9]+") == false) {
+            JOptionPane.showMessageDialog(this, "số lượng tồn phải là số nguyên dương !");
+        } else if (Double.parseDouble(giaNhap) <= 0) {
+            JOptionPane.showMessageDialog(this, "số lượng tồn phải là số nguyên dương !");
+        } else if (namBh.matches("[0-9]+") == false) {
+            JOptionPane.showMessageDialog(this, "năm bảo hành phải là số nguyên dương !");
+        } else if (Integer.parseInt(namBh) <= 0) {
+            JOptionPane.showMessageDialog(this, "năm bảo hành phải là số nguyên dương !");
         } else {
+            QuanLyChiTietSanPham qlChiTietSp = new QuanLyChiTietSanPham(null, moTa, Integer.valueOf(soLuongTon), Double.valueOf(giaNhap), Double.valueOf(giaBan), Integer.valueOf(namBh), hinhAnh, null, dongSp.getId(), nsx.getId(), kd.getId(), kc.getId(), cl.getId(), ms.getId(), sp.getId(), th.getId(), null);
             String add = ctspI.add(qlChiTietSp);
             JOptionPane.showMessageDialog(this, add);
             lstCtSp = ctspI.getAll();
@@ -5959,13 +6007,30 @@ public class FrmDasBoard extends javax.swing.JFrame {
         int them = JOptionPane.showConfirmDialog(this, "Bạn có muốn thêm ?", "thên", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
         if (them == JOptionPane.YES_OPTION) {
-            QuanLyKhachHang qlkh = getKhachHang();
+//            QuanLyKhachHang qlkh = getKhachHang();
+
+            String ma = txtMaKhachHang.getText();
+            String ten = txtTenKhachHang.getText();
+            Date ngaySinh = jdcNgaySinhKhachHang.getDate();
+            boolean gioiTinh = rdbtNamKhachHang.isSelected();
+            int gender;
+            if (gioiTinh == true) {
+                gender = 0;
+            } else {
+                gender = 1;
+            }
+            String sdt = txtSoDienThoaiKhachHang.getText();
+            String diaChi = txtDiaChiKhachHang.getText();
+            int trangThai = cbbKhachHang.getSelectedIndex();
+
             if (txtMaKhachHang.getText().isEmpty() || txtTenKhachHang.getText().isEmpty() || txtDiaChiKhachHang.getText().isEmpty() || txtSoDienThoaiKhachHang.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(this, "không được để trống !");
-//            } else if (txtSoDienThoaiKhachHang.getText().matches("(^\\(\\d{3}\\))\\+s(\\d{4})\\s{1,}(\\d{4})$")== false ){
-//                JOptionPane.showMessageDialog(this, " số điện thoại sai định dạng !");
-
+            } else if (txtTenKhachHang.getText().matches("[a-z A-Z]+") == false) {
+                JOptionPane.showMessageDialog(this, "tên không đúng định dạng !");
+            } else if (txtSoDienThoaiKhachHang.getText().matches("^(0|\\+84)(\\s|\\.)?((3[2-9])|(5[689])|(7[06-9])|(8[1-689])|(9[0-46-9]))(\\d)(\\s|\\.)?(\\d{3})(\\s|\\.)?(\\d{3})$") == false) {
+                JOptionPane.showMessageDialog(this, " số điện thoại sai định dạng !");
             } else {
+                QuanLyKhachHang qlkh = new QuanLyKhachHang("", ma, ten, gender, ngaySinh, sdt, diaChi, trangThai);
                 String add = khs.add(qlkh);
                 JOptionPane.showMessageDialog(this, add);
                 lstKh = khs.getAll();

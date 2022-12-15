@@ -33,25 +33,25 @@ public class NhanVienService implements INhanVienService {
     @Override
     public String add(QuanLyNhanVien qlnv) {
 
-       
-            NhanVien nv = new NhanVien(null, qlnv.getMa(), qlnv.getTen(), qlnv.getGioiTinh(), qlnv.getNgaySinh(), qlnv.getDiaChi(), qlnv.getSoDienThoai(), qlnv.getChucVu(), qlnv.getTrangThai(), qlnv.getTenTaiKhoan(), qlnv.getMatKhau(), qlnv.getHinhAnh());
-            boolean add = nvr.add(nv);
-            if (add == true) {
-                return "Thêm thành công";
-            } else {
-                return "Thêm thất bại";
-            }
-        
+        NhanVien nv = new NhanVien(null, qlnv.getMa(), qlnv.getTen(), qlnv.getGioiTinh(), qlnv.getNgaySinh(), qlnv.getDiaChi(), qlnv.getSoDienThoai(), qlnv.getChucVu(), qlnv.getTrangThai(), qlnv.getTenTaiKhoan(), qlnv.getMatKhau(), qlnv.getHinhAnh());
+        boolean add = nvr.add(nv);
+        if (add == true) {
+            return "Thêm thành công";
+        } else {
+            return "Thêm thất bại";
+        }
+
     }
 
     @Override
     public String update(QuanLyNhanVien qlnv, String id) {
+
+        NhanVien nv = new NhanVien(null, qlnv.getMa(), qlnv.getTen(), qlnv.getGioiTinh(), qlnv.getNgaySinh(), qlnv.getDiaChi(), qlnv.getSoDienThoai(), qlnv.getChucVu(), qlnv.getTrangThai(), qlnv.getTenTaiKhoan(), qlnv.getMatKhau(), qlnv.getHinhAnh());
         QuanLyNhanVien qlKhachhang = new QuanLyNhanVien();
         qlKhachhang = new NhanVienService().getManv(qlnv.getMa());
         if (qlKhachhang != null) {
             return "Mã trùng yêu cầu nhập lại";
         } else {
-            NhanVien nv = new NhanVien(null, qlnv.getMa(), qlnv.getTen(), qlnv.getGioiTinh(), qlnv.getNgaySinh(), qlnv.getDiaChi(), qlnv.getSoDienThoai(), qlnv.getChucVu(), qlnv.getTrangThai(), qlnv.getTenTaiKhoan(), qlnv.getMatKhau(), qlnv.getHinhAnh());
             boolean update = nvr.update(nv, id);
             if (update == true) {
                 return "Sửa thành công";

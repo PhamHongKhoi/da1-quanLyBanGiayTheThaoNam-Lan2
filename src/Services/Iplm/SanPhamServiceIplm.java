@@ -38,6 +38,7 @@ public class SanPhamServiceIplm implements ISanPhamService {
             return "Mã trùng yêu cầu nhập lại";
         } else {
             SanPham sp = new SanPham(null, qlsp.getMa(), qlsp.getTen(), qlsp.getTrangThai());
+
             boolean add = spr.add(sp);
             if (add == true) {
                 return "Thêm thành công";
@@ -49,14 +50,19 @@ public class SanPhamServiceIplm implements ISanPhamService {
 
     @Override
     public String update(QuanLySanPham qlsp, String id) {
-        
+
         SanPham sp = new SanPham(null, qlsp.getMa(), qlsp.getTen(), qlsp.getTrangThai());
-        boolean update = spr.update(sp, id);
-        if (update == true) {
-            return "Sửa thành công";
+        QuanLySanPham qlKhachhang = new QuanLySanPham();
+        qlKhachhang = new SanPhamServiceIplm().getMaSp2(qlsp.getMa());
+        if (qlKhachhang != null) {
+            return "Mã trùng yêu cầu nhập lại";
         } else {
-            return "Sửa thất bại";
-        
+            boolean update = spr.update(sp, id);
+            if (update == true) {
+                return "Sửa thành công";
+            } else {
+                return "Sửa thất bại";
+            }
         }
     }
 

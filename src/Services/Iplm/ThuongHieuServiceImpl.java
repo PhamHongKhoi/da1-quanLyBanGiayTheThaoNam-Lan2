@@ -64,14 +64,19 @@ public class ThuongHieuServiceImpl implements IThuongHieuService {
 
     @Override
     public String update(QuanLyThuongHieu cv, String id) {
-       
-            ThuongHieu thuongHieu = new ThuongHieu("", cv.getMa(), cv.getTen(), cv.getTrangThai());
+
+        ThuongHieu thuongHieu = new ThuongHieu("", cv.getMa(), cv.getTen(), cv.getTrangThai());
+        QuanLyThuongHieu qlKhachhang = new QuanLyThuongHieu();
+        qlKhachhang = new ThuongHieuServiceImpl().getmakc(cv.getMa());
+        if (qlKhachhang != null) {
+            return "Mã trùng yêu cầu nhập lại";
+        } else {
             boolean add = rp.update(thuongHieu, id);
             if (add == true) {
                 return "Sửa thành công";
             } else {
                 return " Sửa thất bại ";
-            
+            }
         }
     }
 

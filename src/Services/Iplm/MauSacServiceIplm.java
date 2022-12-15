@@ -52,15 +52,19 @@ public class MauSacServiceIplm implements IMauSacService {
 
     @Override
     public String update(QuanLyMauSac qlms, String id) {
-       
 
-            MauSac ms = new MauSac(null, qlms.getMa(), qlms.getTen(), qlms.getTrangThai());
+        MauSac ms = new MauSac(null, qlms.getMa(), qlms.getTen(), qlms.getTrangThai());
+        QuanLyMauSac qlKhachhang = new QuanLyMauSac();
+        qlKhachhang = new MauSacServiceIplm().getmakc(qlms.getMa());
+        if (qlKhachhang != null) {
+            return "Mã trùng yêu cầu nhập lại";
+        } else {
             boolean update = msr.update(ms, id);
             if (update == true) {
                 return "Sửa thành công";
             } else {
                 return "Sửa thất bại";
-            
+            }
         }
     }
 

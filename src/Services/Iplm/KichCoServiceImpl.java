@@ -63,14 +63,20 @@ public class KichCoServiceImpl implements IKichCoService {
 
     @Override
     public String update(QuanLyKichco cv, String id) {
-      
-            KichCo kichCo = new KichCo("", cv.getMa(), cv.getTen(), cv.getTrangThai());
+
+        KichCo kichCo = new KichCo("", cv.getMa(), cv.getTen(), cv.getTrangThai());
+        QuanLyKichco qlKhachhang = new QuanLyKichco();
+        qlKhachhang = new KichCoServiceImpl().getmakc(cv.getMa());
+        if (qlKhachhang != null) {
+            return "Mã trùng yêu cầu nhập lại";
+        } else {
             boolean add = rp.update(kichCo, id);
             if (add == true) {
                 return "Sửa thành công";
             } else {
                 return " Sửa thất bại ";
-            }    
+            }
+        }
     }
 
     @Override

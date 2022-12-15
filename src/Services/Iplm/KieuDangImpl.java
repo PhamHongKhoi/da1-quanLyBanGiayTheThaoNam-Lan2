@@ -42,13 +42,13 @@ public class KieuDangImpl implements IKieuDangService {
             return "Mã trùng yêu cầu nhập lại";
         } else {
 
-        KieuDang thuongHieu = new KieuDang("", t.getMa(), t.getTen(), t.getTrangThai());
-        boolean add = rp.add(thuongHieu);
-        if (add == true) {
-            return "thêm thành công";
-        } else {
-            return " thêm thất bại ";
-        }
+            KieuDang thuongHieu = new KieuDang("", t.getMa(), t.getTen(), t.getTrangThai());
+            boolean add = rp.add(thuongHieu);
+            if (add == true) {
+                return "thêm thành công";
+            } else {
+                return " thêm thất bại ";
+            }
         }
     }
 
@@ -64,14 +64,19 @@ public class KieuDangImpl implements IKieuDangService {
 
     @Override
     public String update(QuanLyKieuDang cv, String id) {
-       
+
         KieuDang thuongHieu = new KieuDang("", cv.getMa(), cv.getTen(), cv.getTrangThai());
-        boolean add = rp.update(thuongHieu, id);
-        if (add == true) {
-            return "sửa thành công";
+        QuanLyKieuDang qlKhachhang = new QuanLyKieuDang();
+        qlKhachhang = new KieuDangImpl().getmakc(cv.getMa());
+        if (qlKhachhang != null) {
+            return "Mã trùng yêu cầu nhập lại";
         } else {
-            return " sửa thất bại ";
-        
+            boolean add = rp.update(thuongHieu, id);
+            if (add == true) {
+                return "sửa thành công";
+            } else {
+                return " sửa thất bại ";
+            }
         }
     }
 
@@ -88,7 +93,7 @@ public class KieuDangImpl implements IKieuDangService {
 
     @Override
     public QuanLyKieuDang getmakc(String ma) {
-         KieuDang cv = rp.getmaKc(ma);
+        KieuDang cv = rp.getmaKc(ma);
         if (cv != null) {
             QuanLyKieuDang ql = new QuanLyKieuDang();
             ql.setId(cv.getId());

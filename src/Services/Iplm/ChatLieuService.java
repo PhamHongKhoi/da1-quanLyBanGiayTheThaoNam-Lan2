@@ -64,14 +64,19 @@ public class ChatLieuService implements IChatLieuService {
 
     @Override
     public String update(QuanLyChatLieu cv, String ma) {
-       
-            ChatLieu ChatLieu = new ChatLieu("", cv.getMa(), cv.getDaChinh(), cv.getDaPhu(), cv.getDeNgoai(), cv.getLopLotTrong(), cv.getTrangThai());
+
+        ChatLieu ChatLieu = new ChatLieu("", cv.getMa(), cv.getDaChinh(), cv.getDaPhu(), cv.getDeNgoai(), cv.getLopLotTrong(), cv.getTrangThai());
+        QuanLyChatLieu qlKhachhang = new QuanLyChatLieu();
+        qlKhachhang = new ChatLieuService().getmakc(cv.getMa());
+        if (qlKhachhang != null) {
+            return "Mã trùng yêu cầu nhập lại";
+        } else {
             boolean add = rp.update(ChatLieu, ma);
             if (add == true) {
                 return "Sửa thành công";
             } else {
                 return " Sửa thất bại ";
-            
+            }
         }
     }
 
