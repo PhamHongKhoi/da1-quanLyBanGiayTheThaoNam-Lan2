@@ -841,6 +841,16 @@ public class FrmDasBoard extends javax.swing.JFrame {
             showDataTableHD(listHD);
         }
     }
+    
+    private void showDaThanhToan() {
+        rdoDaThanhToan.setSelected(true);
+        if (rdoDaThanhToan.isSelected() == true) {
+            int trangThai = 1;
+            TBHoaDon.clearSelection();
+            listHD = hoaDonService.getAllByTrangThai(trangThai);
+            showDataTableHD(listHD);
+        }
+    }
 
     private void dangGiaoHang() {
         rdoDangGiaoHang.setSelected(true);
@@ -7205,7 +7215,7 @@ public class FrmDasBoard extends javax.swing.JFrame {
                         String tenKh = txtTenKH.getText();
                         String sdtKh = txtSDT.getText();
                         String diaChiKh = txtTenKH.getText();
-                        if (sdtKh.isEmpty() || !(sdtKh.matches("^(0|\\\\+84)(\\\\s|\\\\.)?((3[2-9])|(5[689])|(7[06-9])|(8[1-689])|(9[0-46-9]))(\\\\d)(\\\\s|\\\\.)?(\\\\d{3})(\\\\s|\\\\.)?(\\\\d{3})$")) || diaChiKh.isEmpty()) {
+                        if (sdtKh.isEmpty() || !(sdtKh.matches("^[0-9]{10}$")) || diaChiKh.isEmpty()) {
                             JOptionPane.showMessageDialog(rootPane, "Bạn nhập sai định dạng. khách hàng ko đc thêm");
                         } else {
                             KhachHangResponse khachHangResponse = new KhachHangResponse(tenKh, sdtKh, diaChiKh);
@@ -7213,7 +7223,7 @@ public class FrmDasBoard extends javax.swing.JFrame {
                         }
 
                     }
-
+                    showDaThanhToan();
                     txtDiaChi.setEnabled(false);
                     txtTenKH.setEnabled(false);
                     txtSDT.setEnabled(false);
