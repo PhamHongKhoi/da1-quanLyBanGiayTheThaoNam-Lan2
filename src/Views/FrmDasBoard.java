@@ -841,7 +841,7 @@ public class FrmDasBoard extends javax.swing.JFrame {
             showDataTableHD(listHD);
         }
     }
-    
+
     private void showDaThanhToan() {
         rdoDaThanhToan.setSelected(true);
         if (rdoDaThanhToan.isSelected() == true) {
@@ -6845,8 +6845,14 @@ public class FrmDasBoard extends javax.swing.JFrame {
                     String inputXoa = JOptionPane.showInputDialog("Mời bạn nhập số lượng " + masp + " - " + tensp + " :");
                     if (inputXoa == null) {
                         JOptionPane.showMessageDialog(rootPane, "Ko co thay doi");
+                        listDssp = danhSAchSanPhamService.getAll();
+                        showDataTableDSSP(listDssp);
+                        showTongTien();
                     } else if (!(inputXoa.matches("\\d*"))) {
                         JOptionPane.showMessageDialog(rootPane, "Bạn nhập sai định dạng");
+                        listDssp = danhSAchSanPhamService.getAll();
+                        showDataTableDSSP(listDssp);
+                        showTongTien();
                     } else if (inputXoa.equals("0")) {
                         BtnXoa.doClick();
                     } else {
@@ -6951,7 +6957,7 @@ public class FrmDasBoard extends javax.swing.JFrame {
                                 listDssp = danhSAchSanPhamService.getAll();
                                 showDataTableDSSP(listDssp);
                                 showTongTien();
-                            } else if (input.equals("0") || input.matches("[a-zA-Z]") || Integer.valueOf(input)<0) {
+                            } else if (input.equals("0") || input.matches("[a-zA-Z]") || Integer.valueOf(input) < 0 || input.trim() =="") {
                                 JOptionPane.showMessageDialog(rootPane, "Bạn nhập sai định dạng");
                                 listDssp = danhSAchSanPhamService.getAll();
                                 showDataTableDSSP(listDssp);
