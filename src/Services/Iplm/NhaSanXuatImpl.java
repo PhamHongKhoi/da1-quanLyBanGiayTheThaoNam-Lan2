@@ -63,18 +63,14 @@ public class NhaSanXuatImpl implements INhaSanXuatService {
     public String update(QuanLyNhaSanXuat cv, String id) {
 
         NhaSanXuat sanPham = new NhaSanXuat("", cv.getMa(), cv.getTen(), cv.getTrangThai());
-        QuanLyNhaSanXuat qlKhachhang = new QuanLyNhaSanXuat();
-        qlKhachhang = new NhaSanXuatImpl().getmakc(cv.getMa());
-        if (qlKhachhang != null) {
-            return "Mã trùng yêu cầu nhập lại";
+
+        boolean add = rp.update(sanPham, id);
+        if (add == true) {
+            return "sửa thành công";
         } else {
-            boolean add = rp.update(sanPham, id);
-            if (add == true) {
-                return "sửa thành công";
-            } else {
-                return " sửa thất bại ";
-            }
+            return " sửa thất bại ";
         }
+
     }
 
     @Override

@@ -6876,8 +6876,14 @@ public class FrmDasBoard extends javax.swing.JFrame {
                     String inputXoa = JOptionPane.showInputDialog("Mời bạn nhập số lượng " + masp + " - " + tensp + " :");
                     if (inputXoa == null) {
                         JOptionPane.showMessageDialog(rootPane, "Ko co thay doi");
+                        listDssp = danhSAchSanPhamService.getAll();
+                        showDataTableDSSP(listDssp);
+                        showTongTien();
                     } else if (!(inputXoa.matches("\\d*"))) {
                         JOptionPane.showMessageDialog(rootPane, "Bạn nhập sai định dạng");
+                        listDssp = danhSAchSanPhamService.getAll();
+                        showDataTableDSSP(listDssp);
+                        showTongTien();
                     } else if (inputXoa.equals("0")) {
                         BtnXoa.doClick();
                     } else {
@@ -6979,10 +6985,19 @@ public class FrmDasBoard extends javax.swing.JFrame {
                             String input = JOptionPane.showInputDialog("Mời nhập số lượng: ");
                             if (input == null) {
                                 JOptionPane.showMessageDialog(rootPane, "Ko co san pham nao dc them");
-                            } else if (input.equals("0") || input.matches("[a-zA-Z]")) {
+                                listDssp = danhSAchSanPhamService.getAll();
+                                showDataTableDSSP(listDssp);
+                                showTongTien();
+                            } else if (input.equals("0") || input.matches("[a-zA-Z]") || Integer.valueOf(input) < 0 || input.trim() == "") {
                                 JOptionPane.showMessageDialog(rootPane, "Bạn nhập sai định dạng");
+                                listDssp = danhSAchSanPhamService.getAll();
+                                showDataTableDSSP(listDssp);
+                                showTongTien();
                             } else if ((int) TBSanPham.getModel().getValueAt(row, 6) < Integer.valueOf(input)) {
                                 JOptionPane.showMessageDialog(rootPane, "Số lượng hàng vượt quá lượng tồn kho");
+                                listDssp = danhSAchSanPhamService.getAll();
+                                showDataTableDSSP(listDssp);
+                                showTongTien();
                             } else {
 
                                 // check san pham trung trong gio hang
