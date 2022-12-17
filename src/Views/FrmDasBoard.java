@@ -4488,34 +4488,34 @@ public class FrmDasBoard extends javax.swing.JFrame {
         jPanel22Layout.setHorizontalGroup(
             jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel22Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jLabel87, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(cbbTimKiemChucVuNV, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTimKiemChucVuNV, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel88)
-                .addGap(18, 18, 18)
-                .addComponent(cbbTimKiemGioiTinhNV, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTimKiemGioiTinhNV, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel89)
-                .addGap(18, 18, 18)
-                .addComponent(cbbTimKiemTrangThaiNV, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
-                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel22Layout.createSequentialGroup()
-                        .addComponent(btAllNv)
-                        .addGap(45, 45, 45))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel22Layout.createSequentialGroup()
+                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel22Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btAllNv))
+                    .addGroup(jPanel22Layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(jLabel87, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(cbbTimKiemChucVuNV, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTimKiemChucVuNV, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel88)
+                        .addGap(18, 18, 18)
+                        .addComponent(cbbTimKiemGioiTinhNV, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTimKiemGioiTinhNV, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel89)
+                        .addGap(18, 18, 18)
+                        .addComponent(cbbTimKiemTrangThaiNV, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)
                         .addComponent(jTimKiemTrangThaiNV, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                         .addComponent(btTimKiemTenNV, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(38, 38, 38)
-                        .addComponent(txtTimKiemTenNV, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(108, 108, 108))))
+                        .addComponent(txtTimKiemTenNV, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(108, 108, 108))
         );
         jPanel22Layout.setVerticalGroup(
             jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -4533,9 +4533,9 @@ public class FrmDasBoard extends javax.swing.JFrame {
                     .addComponent(jTimKiemGioiTinhNV)
                     .addComponent(txtTimKiemTenNV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTimKiemTrangThaiNV))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(btAllNv)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel23.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
@@ -4594,7 +4594,7 @@ public class FrmDasBoard extends javax.swing.JFrame {
                         .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jPanel21, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jLabel85))
-                .addContainerGap(449, Short.MAX_VALUE))
+                .addContainerGap(482, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCard5Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel9)
@@ -4615,7 +4615,7 @@ public class FrmDasBoard extends javax.swing.JFrame {
                 .addComponent(jPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(171, Short.MAX_VALUE))
+                .addContainerGap(219, Short.MAX_VALUE))
         );
 
         pnlCards.add(pnlCard5, "card6");
@@ -5876,7 +5876,7 @@ public class FrmDasBoard extends javax.swing.JFrame {
 
     private void jlbAnhNhanVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbAnhNhanVienMouseClicked
         try {
-            JFileChooser jfc = new JFileChooser("D:\\java\\DuAn1-main-git\\DuAn1-QuanLyBanGiayTheThaonam-nhom666\\src\\image");
+            JFileChooser jfc = new JFileChooser("D:\\java\\DuAn1-main-git\\da1-quanLyBanGiayTheThaoNam-Lan2\\src\\image");
             jfc.showOpenDialog(null);
             File file = jfc.getSelectedFile();
             Image img = ImageIO.read(file);
@@ -5891,16 +5891,14 @@ public class FrmDasBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_jlbAnhNhanVienMouseClicked
 
     private void btThemNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btThemNhanVienActionPerformed
-
         QuanLyNhanVien qlnv = getNhanVien();
         if (txtMaNhanVien.getText().isEmpty() || txtTenNhanVien.getText().isEmpty() || txtDiaChiNhanVien.getText().isEmpty() || txtSoDienThoaiNhanVien.getText().isEmpty() || txtTenTk.getText().isEmpty() || jpfMatKhau.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "không được để trống !");
-        } else if (txtTenNhanVien.getText().matches("[a-z A-Z]+") == false) {
+        } else if (!txtTenNhanVien.getText().matches("[a-z A-Z]+") == false) {
             JOptionPane.showMessageDialog(this, "tên không đúng định dạng !");
         } else if (txtSoDienThoaiNhanVien.getText().matches("^(0|\\+84)(\\s|\\.)?((3[2-9])|(5[689])|(7[06-9])|(8[1-689])|(9[0-46-9]))(\\d)(\\s|\\.)?(\\d{3})(\\s|\\.)?(\\d{3})$") == false) {
             JOptionPane.showMessageDialog(this, " số điện thoại sai định dạng !");
         } else {
-
             String add = nvs.add(qlnv);
             JOptionPane.showMessageDialog(this, add);
             lstQlNhanVien = nvs.getAll();
@@ -6009,7 +6007,7 @@ public class FrmDasBoard extends javax.swing.JFrame {
 
     private void jlbCtspHinhAnhMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbCtspHinhAnhMouseClicked
         try {
-            JFileChooser jfc = new JFileChooser("D:\\java\\DuAn1-main-git\\DuAn1-QuanLyBanGiayTheThaonam-nhom666\\src\\image");
+            JFileChooser jfc = new JFileChooser("D:\\java\\DuAn1-main-git\\da1-quanLyBanGiayTheThaoNam-Lan2\\src\\image");
             jfc.showOpenDialog(null);
             File file = jfc.getSelectedFile();
             Image img = ImageIO.read(file);
@@ -7532,6 +7530,10 @@ public class FrmDasBoard extends javax.swing.JFrame {
         txtNgaybatDauTaoHoaDon.setEnabled(false);
         txtNgayKetThucTaoHoaDon.setEnabled(false);
         btTimKiemNgayThongKe.setEnabled(false);
+        lstThongKe = tks.getAll();
+        showTableThongKe(lstThongKe);
+        showHoaDonDaThanhToan();
+        showTongTienHoaDon();
     }//GEN-LAST:event_rdbtTatCaDoanhThuThongKeActionPerformed
 
     private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
