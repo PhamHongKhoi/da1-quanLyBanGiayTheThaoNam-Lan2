@@ -268,7 +268,7 @@
             <Container class="javax.swing.JPanel" name="jPanel26">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="33" red="66" type="rgb"/>
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
               </Properties>
               <Constraints>
@@ -280,15 +280,28 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="1907" max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="jlbManHinhChinh" min="-2" pref="1757" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="169" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="974" max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="jlbManHinhChinh" min="-2" pref="789" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="185" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JLabel" name="jlbManHinhChinh">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="."/>
+                  </Properties>
+                </Component>
+              </SubComponents>
             </Container>
             <Container class="javax.swing.JPanel" name="jPanel19">
               <Properties>
@@ -6163,7 +6176,7 @@
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Component id="jLabel108" alignment="0" min="-2" max="-2" attributes="0"/>
                                               <Component id="jPanel39" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jButton10" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jButton10" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
@@ -6270,7 +6283,7 @@
                         </Component>
                         <Component class="javax.swing.JButton" name="jButton10">
                           <Properties>
-                            <Property name="text" type="java.lang.String" value="All"/>
+                            <Property name="text" type="java.lang.String" value="T&#x1ea5;t c&#x1ea3; h&#xf3;a &#x111;&#x1a1;n"/>
                           </Properties>
                           <Events>
                             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton10ActionPerformed"/>
